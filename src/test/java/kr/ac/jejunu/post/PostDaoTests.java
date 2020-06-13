@@ -31,7 +31,7 @@ public class PostDaoTests {
     public void insert() throws SQLException, ClassNotFoundException {
         String title = "Hi!";
         String content = "My name is Youngsu";
-        Integer user_id = 1;
+        Integer user_id = 2;
 
         Post post = new Post();
         post.setTitle(title);
