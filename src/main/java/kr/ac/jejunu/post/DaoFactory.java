@@ -1,17 +1,22 @@
 package kr.ac.jejunu.post;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class DaoFactory {
-    public PostDao getPostDao() {
-        return new PostDao(getConnectionMaker());
+    @Bean
+    public PostDao postDao() {
+        return new PostDao(connectionMaker());
     }
 
-    public UserDao getUserDao() {
-        return new UserDao(getConnectionMaker());
+    @Bean
+    public UserDao userDao() {
+        return new UserDao(connectionMaker());
     }
 
-    private JejuConnectionMaker getConnectionMaker() {
+    @Bean
+    public ConnectionMaker connectionMaker() {
         return new JejuConnectionMaker();
     }
-
-
 }
