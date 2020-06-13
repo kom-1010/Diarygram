@@ -1,6 +1,5 @@
 package kr.ac.jejunu.post;
 
-import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
@@ -16,7 +15,8 @@ public class UserDaoTests {
         String name = "jinsu";
         String password = "1111";
 
-        UserDao userDao = new UserDao();
+        DaoFactory daoFactory = new DaoFactory();
+        UserDao userDao = daoFactory.getUserDao();
         User user = userDao.get(id);
         assertThat(user.getId(), is(id));
         assertThat(user.getName(), is(name));
@@ -31,7 +31,8 @@ public class UserDaoTests {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
-        UserDao userDao = new UserDao();
+        DaoFactory daoFactory = new DaoFactory();
+        UserDao userDao = daoFactory.getUserDao();
         userDao.insert(user);
         assertThat(user.getId(), greaterThan(1));
 

@@ -18,7 +18,8 @@ public class PostDaoTests {
         Integer user_id = 1;
         String created_at = "2020-06-13 19:52:41";
 
-        PostDao postDao = new PostDao();
+        DaoFactory daoFactory = new DaoFactory();
+        PostDao postDao = daoFactory.getPostDao();
         Post post = postDao.get(id);
         assertThat(post.getId(), is(id));
         assertThat(post.getTitle(), is(title));
@@ -37,7 +38,8 @@ public class PostDaoTests {
         post.setTitle(title);
         post.setContent(content);
         post.setUser_id(user_id);
-        PostDao postDao = new PostDao();
+        DaoFactory daoFactory = new DaoFactory();
+        PostDao postDao = daoFactory.getPostDao();
         postDao.insert(post);
         assertThat(post.getId(), greaterThan(0));
 
