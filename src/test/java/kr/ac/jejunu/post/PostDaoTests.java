@@ -13,41 +13,37 @@ public class PostDaoTests {
     @Test
     public void get() throws SQLException, ClassNotFoundException {
         Integer id = 1;
-        String username = "jinsu";
-        String password = "1111";
-        String title = "hello!";
-        String content = "hello world";
-        String created_at = "2020-06-13 10:17:24";
+        String title = "Hello";
+        String content = "My name is Jinsu!";
+        Integer user_id = 1;
+        String created_at = "2020-06-13 19:52:41";
+
         PostDao postDao = new PostDao();
         Post post = postDao.get(id);
         assertThat(post.getId(), is(id));
-        assertThat(post.getUsername(), is(username));
-        assertThat(post.getPassword(), is(password));
         assertThat(post.getTitle(), is(title));
         assertThat(post.getContent(), is(content));
+        assertThat(post.getUser_id(), is(user_id));
         assertThat(post.getCreated_at(), is(created_at));
     }
 
     @Test
     public void insert() throws SQLException, ClassNotFoundException {
-        String username = "youngsu";
-        String password = "2222";
-        String title = "hello!";
-        String content = "hello world";
+        String title = "Hi!";
+        String content = "My name is Youngsu";
+        Integer user_id = 1;
 
         Post post = new Post();
-        post.setUsername(username);
-        post.setPassword(password);
         post.setTitle(title);
         post.setContent(content);
+        post.setUser_id(user_id);
         PostDao postDao = new PostDao();
         postDao.insert(post);
         assertThat(post.getId(), greaterThan(0));
 
-        Post insertedPost = PostDao.get(post.getId());
-        assertThat(insertedPost.getUsername(), is(username));
-        assertThat(insertedPost.getPassword(), is(password));
+        Post insertedPost = postDao.get(post.getId());
         assertThat(insertedPost.getTitle(), is(title));
         assertThat(insertedPost.getContent(), is(content));
+        assertThat(insertedPost.getUser_id(), is(user_id));
     }
 }

@@ -2,10 +2,9 @@ package kr.ac.jejunu.post;
 
 public class Post {
     private Integer id;
-    private String username;
-    private String password;
     private String title;
     private String content;
+    private int user_id;
     private String created_at;
 
     public Integer getId() {
@@ -14,22 +13,6 @@ public class Post {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getTitle() {
@@ -54,5 +37,13 @@ public class Post {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }
