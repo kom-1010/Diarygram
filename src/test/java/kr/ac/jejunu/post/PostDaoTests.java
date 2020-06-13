@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 
 public class PostDaoTests {
@@ -25,5 +26,28 @@ public class PostDaoTests {
         assertThat(post.getTitle(), is(title));
         assertThat(post.getContent(), is(content));
         assertThat(post.getCreated_at(), is(created_at));
+    }
+
+    @Test
+    public void insert() throws SQLException, ClassNotFoundException {
+        String username = "youngsu";
+        String password = "2222";
+        String title = "hello!";
+        String content = "hello world";
+
+        Post post = new Post();
+        post.setUsername(username);
+        post.setPassword(password);
+        post.setTitle(title);
+        post.setContent(content);
+        PostDao postDao = new PostDao();
+        postDao.insert(post);
+        assertThat(post.getId(), greaterThan(0));
+
+        Post insertedPost = PostDao.get(post.getId());
+        assertThat(insertedPost.getUsername(), is(username));
+        assertThat(insertedPost.getPassword(), is(password));
+        assertThat(insertedPost.getTitle(), is(title));
+        assertThat(insertedPost.getContent(), is(content));
     }
 }
