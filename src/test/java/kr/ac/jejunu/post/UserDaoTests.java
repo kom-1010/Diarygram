@@ -26,7 +26,7 @@ public class UserDaoTests {
     String password = "2222";
 
     @Test
-    public void get() throws SQLException, ClassNotFoundException {
+    public void get() throws SQLException {
         Integer id = 1;
         String name = "jinsu";
         String password = "1111";
