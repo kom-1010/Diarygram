@@ -1,55 +1,57 @@
 package kr.ac.jejunu.post;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+
 import java.sql.*;
 
 public class UserDao {
-    private final JdbcContext jdbcContext;
+    private final JdbcTemplate jdbcTemplate;
 
-    public UserDao(JdbcContext jdbcContext) {
-        this.jdbcContext = jdbcContext;
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public User get(Integer id) throws SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("select * from user_info where id = ?");
-            preparedStatement.setInt(1, id);
-            return preparedStatement;
-        };
-        User user = jdbcContext.jdbcContextForGet(statementStrategy);
-        return user;
+        Object[] params = new Object[] {id};
+        String sql = "select * from user_info where id = ?";
+        return jdbcTemplate.query(sql, params, rs -> {
+            User user = null;
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+            }
+            return user;
+        });
     }
 
     public void insert(User user) throws SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("insert into user_info(name, password) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getPassword());
+        Object[] params = new Object[] {user.getName(), user.getPassword()};
+        String sql = "insert into user_info(name, password) values (?, ?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(con -> {
+            PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            for (int i=0;i<params.length;i++) {
+                preparedStatement.setObject(i+1, params[i]);
+            }
             return preparedStatement;
-        };
-        jdbcContext.jdbcContextForInsert(user, statementStrategy);
+        }, keyHolder);
+        user.setId(keyHolder.getKey().intValue());
     }
 
     public void update(User user) throws SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("update user_info set name = ?, password = ? where id = ?");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, user.getId());
-            return preparedStatement;
-        };
-        jdbcContext.jdbcContextForUpdate(statementStrategy);
+        Object[] params = new Object[] {user.getName(), user.getPassword(), user.getId()};
+        String sql = "update user_info set name = ?, password = ? where id = ?";
+        jdbcTemplate.update(sql, params);
     }
 
     public void delete(Integer id) throws SQLException {
-        StatementStrategy statementStrategy = connection -> {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("delete from user_info where id = ?");
-            preparedStatement.setInt(1, id);
-            return preparedStatement;
-        };
-        jdbcContext.jdbcContextForUpdate(statementStrategy);
+        Object[] params = new Object[] {id};
+        String sql = "delete from user_info where id = ?";
+        jdbcTemplate.update(sql, params);
     }
+
 }
