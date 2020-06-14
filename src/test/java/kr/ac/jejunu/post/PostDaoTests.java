@@ -19,7 +19,7 @@ public class PostDaoTests {
 
     @BeforeAll
     public static void setup() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(DaoFactory.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext("kr.ac.jejunu.post");
         postDao = applicationContext.getBean("postDao", PostDao.class);
     }
 

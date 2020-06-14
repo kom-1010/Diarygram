@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.sql.SQLException;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
@@ -18,7 +16,7 @@ public class UserDaoTests {
 
     @BeforeAll
     public static void setup() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(DaoFactory.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext("kr.ac.jejunu.post");
         userDao = applicationContext.getBean("userDao", UserDao.class);
     }
 
