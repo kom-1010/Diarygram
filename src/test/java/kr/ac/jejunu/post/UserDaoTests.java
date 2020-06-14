@@ -26,7 +26,7 @@ public class UserDaoTests {
     String password = "2222";
 
     @Test
-    public void get() throws SQLException {
+    public void get() {
         Integer id = 1;
         String name = "jinsu";
         String password = "1111";
@@ -38,7 +38,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
@@ -51,7 +51,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
@@ -71,7 +71,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void delete() throws SQLException {
+    public void delete() {
         User user = new User();
         user.setName(name);
         user.setPassword(password);

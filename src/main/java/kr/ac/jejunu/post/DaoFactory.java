@@ -22,7 +22,7 @@ public class DaoFactory {
 
     @Bean
     public PostDao postDao() {
-        return new PostDao(dataSource());
+        return new PostDao(jdbcTemplate());
     }
 
     @Bean

@@ -28,7 +28,7 @@ public class PostDaoTests {
     Integer user_id = 2;
 
     @Test
-    public void get() throws SQLException {
+    public void get() {
         Integer id = 1;
         String title = "Hello";
         String content = "My name is Jinsu!";
@@ -44,7 +44,7 @@ public class PostDaoTests {
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
@@ -59,7 +59,7 @@ public class PostDaoTests {
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
@@ -82,7 +82,7 @@ public class PostDaoTests {
     }
 
     @Test
-    public void delete() throws SQLException {
+    public void delete() {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
