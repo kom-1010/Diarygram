@@ -14,11 +14,37 @@ public class UserController {
     private final UserDao userDao;
     private final PostDao postDao;
 
+    @RequestMapping("/index")
+    public void index(){
+    }
+
+    @RequestMapping("/login")
+    public void login(){
+    }
+
+    @RequestMapping("/mine")
+    public void mine(){
+    }
+
+    @RequestMapping("/new")
+    public void newPost(){
+    }
+
+    @RequestMapping("/signup")
+    public void signup(){
+    }
+
+    @RequestMapping("/single")
+    public void single(){
+    }
+
     @RequestMapping("/user")
-    public ModelAndView getData(@RequestParam("id") Integer id) {
+    public ModelAndView getPost(@RequestParam("id") Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("user", userDao.get(id));
-        modelAndView.addObject("post", postDao.get(id));
+        Post post = postDao.get(id);
+        User user = userDao.get(post.getUser_id());
+        modelAndView.addObject("post", post);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 

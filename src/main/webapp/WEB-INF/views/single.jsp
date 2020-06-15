@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <!--
 	Future Imperfect by HTML5 UP
@@ -12,20 +13,20 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body class="single is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
       <header id="header">
-        <h1><a href="index.html">Diarygram</a></h1>
+        <h1><a href="/index/">Diarygram</a></h1>
         <nav class="links">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="mine.html">My Page</a></li>
+            <li><a href="/index/">Home</a></li>
+            <li><a href="/mine/">My Page</a></li>
             >
-            <li><a href="new.html">New Post</a></li>
+            <li><a href="/new/">New Post</a></li>
           </ul>
         </nav>
       </header>
@@ -92,12 +93,12 @@
               >
               <a href="#" class="author"
                 ><span class="name">Jane Doe</span
-                ><img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt=""
+                ><img src="/images/avatar.jpg" alt=""
               /></a>
             </div>
           </header>
           <span class="image featured"
-            ><img src="../src/main/webapp/WEB-INF/static/images/pic01.jpg" alt=""
+            ><img src="/images/pic01.jpg" alt=""
           /></span>
           <p>
             Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl.
@@ -143,22 +144,22 @@
             </form>
             <ul class="alt">
               <li>
-                <img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt="" />
+                <img src="/images/avatar.jpg" alt="" />
                 <span class="name">Jinsu</span>
                 : Wow. This is vary beautiful!
               </li>
               <li>
-                <img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt="" />
+                <img src="/images/avatar.jpg" alt="" />
                 <span class="name">Jinsu</span>
                 : Wow. This is vary beautiful!
               </li>
               <li>
-                <img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt="" />
+                <img src="/images/avatar.jpg" alt="" />
                 <span class="name">Jinsu</span>
                 : Wow. This is vary beautiful!
               </li>
             </ul>
-            <a href="single.html" class="button large">더보기</a>
+            <a href="/single/" class="button large">더보기</a>
           </div>
         </article>
       </div>
@@ -200,10 +201,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <!--
 	Future Imperfect by HTML5 UP
@@ -12,19 +13,19 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
       <header id="header">
-        <h1><a href="index.html">Diarygram</a></h1>
+        <h1><a href="/index./">Diarygram</a></h1>
         <nav class="links">
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/index/">Home</a></li>
             <li><a href="#">My Page</a></li>
-            <li><a href="new.html">New Post</a></li>
+            <li><a href="/new/">New Post</a></li>
           </ul>
         </nav>
       </header>
@@ -35,7 +36,7 @@
         <article class="post">
           <header>
             <div class="title">
-              <h2><a href="single.html">Magna sed adipiscing</a></h2>
+              <h2><a href="/single/">Magna sed adipiscing</a></h2>
               <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
             </div>
             <div class="meta">
@@ -44,12 +45,12 @@
               >
               <div class="author">
                 <span class="name">Jane Doe</span
-                ><img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt="" />
+                ><img src="/images/avatar.jpg" alt="" />
               </div>
             </div>
           </header>
-          <a href="single.html" class="image featured"
-            ><img src="../src/main/webapp/WEB-INF/static/images/pic01.jpg" alt=""
+          <a href="/single/" class="image featured"
+            ><img src="/images/pic01.jpg" alt=""
           /></a>
           <p>
             Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl.
@@ -80,8 +81,8 @@
       <section id="sidebar">
         <!-- Intro -->
         <section id="intro">
-          <a href="index.html" class="logo"
-            ><img src="../src/main/webapp/WEB-INF/static/images/logo.jpg" alt=""
+          <a href="/index/" class="logo"
+            ><img src="/images/logo.jpg" alt=""
           /></a>
           <header>
             <h2>Diarygram</h2>
@@ -96,19 +97,19 @@
           <ul class="actions">
             <!-- Not login state-->
             <!-- <li>
-              <a href="login.html" class="button large">로그인</a>
+              <a href="/login/" class="button large">로그인</a>
             </li>
             <li>
-              <a href="signup.html" class="button large">회원가입</a>
+              <a href="/signup/" class="button large">회원가입</a>
 			</li> -->
 
             <!-- Login state -->
             <li class="author" style="float: left;">
               <span class="name">Jinsu</span>
-              <img src="../src/main/webapp/WEB-INF/static/images/avatar.jpg" alt="" />
+              <img src="/images/avatar.jpg" alt="" />
             </li>
             <li>
-              <a href="single.html" class="button large">로그아웃</a>
+              <a href="/single/" class="button large">로그아웃</a>
             </li>
           </ul>
         </section>
@@ -151,10 +152,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

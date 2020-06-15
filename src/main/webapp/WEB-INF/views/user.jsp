@@ -2,15 +2,14 @@
 <html>
 <head>
     <title>User</title>
+    <link rel="stylesheet" href="/css/user.css" />
 </head>
 <body>
-<h1>--------- user --------------</h1>
-<h3>Name : ${user.name}</h3>
-<h3>Password : ${user.password}</h3>
-<h1>--------- post --------------</h1>
-<h3>Title : ${post.title}</h3>
+<h1>Blue Font</h1>
+<h3 id="title">Title : ${post.title}</h3>
 <h3>Content : ${post.content}</h3>
-<h3>Author : ${post.user_id}</h3>
+<h3>Author : ${user.name}</h3>
 <h3>Created : ${post.created_at}</h3>
+<script src="/js/user.js/"></script>
 </body>
 </html>
