@@ -8,10 +8,10 @@
                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="kr.ac.jejunu.post" />
-    <beans:bean name="/user" class="kr.ac.jejunu.post.SimpleController">
-        <beans:constructor-arg name="userDao" ref="userDao" />
-        <beans:constructor-arg name="postDao" ref="postDao" />
-    </beans:bean>
+<!--    <beans:bean name="/user" class="kr.ac.jejunu.post.SimpleController">-->
+<!--        <beans:constructor-arg name="userDao" ref="userDao" />-->
+<!--        <beans:constructor-arg name="postDao" ref="postDao" />-->
+<!--    </beans:bean>-->
     <beans:bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/" />
         <beans:property name="suffix" value=".jsp" />
