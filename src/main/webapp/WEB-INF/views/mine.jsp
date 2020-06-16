@@ -20,10 +20,10 @@
     <div id="wrapper">
       <!-- Header -->
       <header id="header">
-        <h1><a href="/index./">Diarygram</a></h1>
+        <h1><a href="/">Diarygram</a></h1>
         <nav class="links">
           <ul>
-            <li><a href="/index/">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">My Page</a></li>
             <li><a href="/new/">New Post</a></li>
           </ul>
@@ -81,7 +81,7 @@
       <section id="sidebar">
         <!-- Intro -->
         <section id="intro">
-          <a href="/index/" class="logo"
+          <a href="/" class="logo"
             ><img src="/images/logo.jpg" alt=""
           /></a>
           <header>

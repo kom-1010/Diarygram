@@ -14,8 +14,10 @@ public class UserController {
     private final UserDao userDao;
     private final PostDao postDao;
 
-    @RequestMapping("/index")
-    public void index(){
+    @RequestMapping("/")
+    public ModelAndView index(){
+        ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
     }
 
     @RequestMapping("/login")
