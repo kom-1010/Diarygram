@@ -2,7 +2,9 @@ package kr.ac.jejunu.post;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,8 +26,14 @@ public class UserController {
     public void login(){
     }
 
-    @RequestMapping("/mine")
-    public void mine(){
+    @RequestMapping("/mine/{id}")
+    public ModelAndView mine(@PathVariable("id") Integer id){
+        ModelAndView modelAndView = new ModelAndView("mine");
+        Post post = postDao.get(id);
+        User user = userDao.get(post.getUser_id());
+        modelAndView.addObject("post", post);
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @RequestMapping("/new")
@@ -36,8 +44,14 @@ public class UserController {
     public void signup(){
     }
 
-    @RequestMapping("/single")
-    public void single(){
+    @RequestMapping("/single/{id}")
+    public ModelAndView single(@PathVariable("id") Integer id){
+        ModelAndView modelAndView = new ModelAndView("single");
+        Post post = postDao.get(id);
+        User user = userDao.get(post.getUser_id());
+        modelAndView.addObject("post", post);
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @RequestMapping("/user")

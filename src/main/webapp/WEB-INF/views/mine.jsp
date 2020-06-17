@@ -36,15 +36,13 @@
         <article class="post">
           <header>
             <div class="title">
-              <h2><a href="/single/">Magna sed adipiscing</a></h2>
-              <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+              <h2><a href="/single/">${post.title}</a></h2>
             </div>
             <div class="meta">
-              <time class="published" datetime="2015-11-01"
-                >November 1, 2015</time
-              >
+              <time class="published" datetime=${post.created_at}
+                >${post.created_at}</time>
               <div class="author">
-                <span class="name">Jane Doe</span
+                <span class="name">${user.name}</span
                 ><img src="/images/avatar.jpg" alt="" />
               </div>
             </div>
@@ -53,12 +51,7 @@
             ><img src="/images/pic01.jpg" alt=""
           /></a>
           <p>
-            Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl.
-            Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna
-            enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non
-            congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed
-            vitae justo condimentum, porta lectus vitae, ultricies congue
-            gravida diam non fringilla.
+            ${post.content}
           </p>
           <footer>
             <ul class="stats">

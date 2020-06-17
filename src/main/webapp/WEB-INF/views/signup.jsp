@@ -40,27 +40,21 @@
             </div>
           </header>
           <section>
-            <form method="post" action="#">
+            <form>
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
                     name="demo-name"
-                    id="demo-name"
                     value=""
                     placeholder="username"
                   />
-                </div>
-
-                <div class="col-12 actions">
-                  <button class="button icon solid fa-upload">Image</button>
                 </div>
 
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
                     name="demo-name"
-                    id="demo-name"
                     value=""
                     placeholder="password"
                   />
@@ -69,15 +63,18 @@
                   <input
                     type="text"
                     name="demo-name"
-                    id="demo-name"
                     value=""
                     placeholder="check password"
                   />
                 </div>
 
+                <div class="col-12 actions">
+                  <button class="button icon solid fa-upload">Image</button>
+                </div>
+
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Signup" /></li>
+                    <li><input type="submit" value="Signup" id="btn-signup" /></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>
@@ -158,6 +155,6 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/comment.js"></script>
+    <script src="/js/signup.js"></script>
   </body>
 </html>

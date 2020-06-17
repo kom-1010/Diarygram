@@ -28,6 +28,14 @@ public class PostDaoTests {
     Integer user_id = 2;
 
     @Test
+    public void all() {
+        Post[] posts = new Post[3];
+        for(int i=0;i<3;i++) {
+            posts[i] = postDao.get(i);
+            assertThat(posts[i].getId(), is(i));
+        }
+    }
+
     public void get() {
         Integer id = 1;
         String title = "Hello";
@@ -43,7 +51,6 @@ public class PostDaoTests {
         assertThat(post.getCreated_at(), is(created_at));
     }
 
-    @Test
     public void insert() {
         Post post = new Post();
         post.setTitle(title);
@@ -58,7 +65,6 @@ public class PostDaoTests {
         assertThat(insertedPost.getUser_id(), is(user_id));
     }
 
-    @Test
     public void update() {
         Post post = new Post();
         post.setTitle(title);
@@ -81,7 +87,6 @@ public class PostDaoTests {
         assertThat(updatedPost.getUser_id(), is(updatedUser_id));
     }
 
-    @Test
     public void delete() {
         Post post = new Post();
         post.setTitle(title);
