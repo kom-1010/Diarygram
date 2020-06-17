@@ -40,12 +40,12 @@
             </div>
           </header>
           <section>
-            <form>
+            <form id="form-signup" method="post" action="/rest/signup">
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
+                    name="username"
                     value=""
                     placeholder="username"
                   />
@@ -54,7 +54,7 @@
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
+                    name="password"
                     value=""
                     placeholder="password"
                   />
@@ -62,7 +62,7 @@
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
+                    name="checkPassword"
                     value=""
                     placeholder="check password"
                   />
@@ -74,7 +74,7 @@
 
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Signup" id="btn-signup" /></li>
+                    <li><input type="submit" value="signup" id="btn-signup" /></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>
@@ -155,6 +155,5 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/signup.js"></script>
   </body>
 </html>

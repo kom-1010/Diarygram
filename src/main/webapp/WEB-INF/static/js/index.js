@@ -6,14 +6,8 @@
 const main = document.getElementById("main");
 let startId = 1;
 
-function loadData(startId){
-    for(var i=startId;i<startId+3;i++) {
-        $.ajax({
-            type: 'get',
-            url: `rest/${i}`,
-            dataType: 'json',
-            success: function (data) {
-                main.innerHTML += `
+function writeHTML(data) {
+    main.innerHTML += `
                 <article class="post">
                     <header>
                         <div class="title">
@@ -36,7 +30,15 @@ function loadData(startId){
                         </ul>
                     </footer>
                 </article>`;
-            },
+}
+
+function loadData(startId){
+    for(var i=startId;i<startId+3;i++) {
+        $.ajax({
+            type: 'get',
+            url: `rest/${i}`,
+            dataType: 'json',
+            success: writeHTML ,
             error: function (error) {
                 console.log("error: ", error);
             }
