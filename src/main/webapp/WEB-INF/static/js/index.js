@@ -4,7 +4,7 @@
 // scroll을 내릴 때마다 새로운 데이터 추가하는 코드 작성할  계획
 
 const main = document.getElementById("main");
-let startId = 1;
+let startId = 26;
 
 function writeHTML(data) {
     main.innerHTML += `

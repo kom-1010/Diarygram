@@ -40,13 +40,12 @@
             </div>
           </header>
           <section>
-            <form method="post" action="#">
+            <form method="post" action="/rest/login">
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
-                    id="demo-name"
+                    name="username"
                     value=""
                     placeholder="username"
                   />
@@ -55,7 +54,7 @@
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
+                    name="password"
                     id="demo-name"
                     value=""
                     placeholder="password"

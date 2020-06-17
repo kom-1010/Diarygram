@@ -46,23 +46,7 @@
 
     <!-- author -->
     <section>
-      <ul class="actions">
-        <!-- Not login state-->
-        <li>
-          <a href="/login/" class="button large">로그인</a>
-        </li>
-        <li>
-          <a href="/signup/" class="button large">회원가입</a>
-        </li>
-
-        <!-- Login state -->
-        <!-- <li class="author" style="float: left;">
-          <span class="name">Jinsu</span>
-          <img src="images/avatar.jpg" alt="" />
-        </li>
-        <li>
-          <a href="/single/" class="button large">로그아웃</a>
-        </li> -->
+      <ul class="actions" id="area-account">
       </ul>
     </section>
 
@@ -103,17 +87,6 @@
   </section>
 </div>
 
-<footer>
-  <div style="width:200px; margin: 0 auto">
-    <!-- Pagination -->
-    <ul class="actions pagination">
-      <li>
-        <a href="" class="disabled button large previous">Previous Page</a>
-      </li>
-      <li><a href="#" class="button large next">Next Page</a></li>
-    </ul>
-  </div>
-</footer>
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/browser.min.js"></script>
@@ -121,5 +94,11 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/loginCheck.js"></script>
+<script>
+  var user = `${user["name"]}`;
+  loginCheck(user);
+</script>
+
 </body>
 </html>

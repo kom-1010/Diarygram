@@ -28,6 +28,21 @@ public class UserDao {
         });
     }
 
+    public User get(String name) {
+        Object[] params = new Object[] {name};
+        String sql = "select * from user_info where name = ?";
+        return jdbcTemplate.query(sql, params, rs -> {
+            User user = null;
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+            }
+            return user;
+        });
+    }
+
     public void insert(User user) {
         Object[] params = new Object[] {user.getName(), user.getPassword()};
         String sql = "insert into user_info(name, password) values (?, ?)";

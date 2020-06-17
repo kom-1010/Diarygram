@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
+
 @org.springframework.web.bind.annotation.RestController
 @Controller
 @RequestMapping("/rest")
@@ -37,6 +39,19 @@ public class RestController {
             user.setPassword(password);
             userDao.insert(user);
             url = "/";
+        }
+        return new RedirectView(url);
+    }
+
+    @PostMapping("/login")
+    public View login(String username, String password, HttpSession session) {
+        String url = "/login";
+        User user = userDao.get(username);
+        if(user != null) {
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("user", user);
+                url = "/";
+            }
         }
         return new RedirectView(url);
     }
