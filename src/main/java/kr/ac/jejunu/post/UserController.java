@@ -26,13 +26,9 @@ public class UserController {
     public void login(){
     }
 
-    @RequestMapping("/mine/{id}")
-    public ModelAndView mine(@PathVariable("id") Integer id){
+    @RequestMapping("/mine/")
+    public ModelAndView mine(@PathVariable("user") User user){
         ModelAndView modelAndView = new ModelAndView("mine");
-        Post post = postDao.get(id);
-        User user = userDao.get(post.getUser_id());
-        modelAndView.addObject("post", post);
-        modelAndView.addObject("user", user);
         return modelAndView;
     }
 

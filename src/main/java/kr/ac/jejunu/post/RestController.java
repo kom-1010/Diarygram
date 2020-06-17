@@ -55,4 +55,10 @@ public class RestController {
         }
         return new RedirectView(url);
     }
+
+    @RequestMapping("/logout")
+    public View logout(HttpSession session) {
+        session.removeAttribute("user");
+        return new RedirectView("/");
+    }
 }

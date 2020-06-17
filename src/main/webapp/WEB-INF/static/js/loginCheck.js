@@ -1,7 +1,8 @@
 const areaAccount = document.getElementById("area-account");
 
 function loginCheck(user) {
-    if(user==null) {
+    console.log(user);
+    if(user=="") {
         areaAccount.innerHTML = `
         <li>
           <a href="/login/" class="button large">로그인</a>
@@ -16,7 +17,7 @@ function loginCheck(user) {
           <img src="images/avatar.jpg" alt="" />
         </li>
         <li>
-          <a href="#" class="button large">로그아웃</a>
+          <a href="/rest/logout" class="button large">로그아웃</a>
         </li>`
     }
 }
