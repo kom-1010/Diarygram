@@ -41,24 +41,14 @@
             </div>
           </header>
           <section>
-            <form method="post" action="#">
+            <form method="post" action="/rest/new">
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
-                    name="demo-name"
-                    id="demo-name"
+                    name="title"
                     value=""
                     placeholder="Title"
-                  />
-                </div>
-                <div class="col-12 col-12-xsmall">
-                  <input
-                    type="text"
-                    name="demo-name"
-                    id="demo-name"
-                    value=""
-                    placeholder="Subtitle"
                   />
                 </div>
 
@@ -68,8 +58,7 @@
 
                 <div class="col-12">
                   <textarea
-                    name="demo-message"
-                    id="demo-message"
+                    name="content"
                     placeholder="Enter your message"
                     rows="6"
                   ></textarea>
@@ -77,7 +66,7 @@
 
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Save" /></li>
+                    <li><input type="submit" value="Post" /></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>

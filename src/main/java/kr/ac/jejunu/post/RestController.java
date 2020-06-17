@@ -61,4 +61,20 @@ public class RestController {
         session.removeAttribute("user");
         return new RedirectView("/");
     }
+
+    @PostMapping("/new")
+    public View createPost(String title, String content, HttpSession session) {
+        String url = "/new";
+        Post post = new Post();
+        User user = (User) session.getAttribute("user");
+
+        if(user!=null) {
+            post.setTitle(title);
+            post.setContent(content);
+            post.setUser_id(user.getId());
+            postDao.insert(post);
+            url = "/";
+        }
+        return new RedirectView(url);
+    }
 }
