@@ -2,6 +2,8 @@
 // post 데이터는 rest/post/{id}를 통해 가져올 수 잇다.
 // user 데잍터는 rest/user/{id}를 통해 가져올 수 있다.
 // scroll을 내릴 때마다 새로운 데이터 추가하는 코드 작성할  계획
+let currLastId;
+
 
 function writePost(data) {
     const main = document.getElementById("main");
@@ -31,8 +33,8 @@ function writePost(data) {
 }
 
 function loadPost(startId, lastId, url){
-    for(let i=lastId;i>lastId-3;i--) {
-        console.log(`${url}/${i}`)
+    let postLimit = 3;
+    for(let i=lastId;i>lastId-postLimit;i--) {
         if(i<startId) {
             break;
         }
@@ -40,10 +42,25 @@ function loadPost(startId, lastId, url){
             type: 'get',
             url: `${url}/${i}`,
             dataType: 'json',
+            async: false,
             success: writePost ,
             error: function (error) {
-                console.log("error: ", error);
+                postLimit ++;
             }
         });
+        currLastId = i-1;
     }
 }
+
+loadPost(startId, lastId, url);
+
+function getCurrentScrollPercentage(){
+    return (window.scrollY + window.innerHeight) / document.body.clientHeight * 100
+}
+
+document.addEventListener('scroll', () => {
+    const currentScrollPercentage = getCurrentScrollPercentage()
+    if(currentScrollPercentage > 90){
+        loadPost(startId, currLastId, url);
+    }
+});

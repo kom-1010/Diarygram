@@ -93,12 +93,14 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/load.js"></script>
 <script src="/js/loginCheck.js"></script>
 <script>
-  loadPost(`${startPost["id"]}`, `${lastPost["id"]}`, `/rest`);
+  const startId = `${startPost["id"]}`;
+  let lastId = `${lastPost["id"]}`;
+  const url = `/rest`;
   loginCheck(`${user["name"]}`);
 </script>
+<script src="/js/load.js"></script>
 
 </body>
 </html>

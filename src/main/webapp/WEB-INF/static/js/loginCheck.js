@@ -14,7 +14,7 @@ function loginCheck(user) {
         areaAccount.innerHTML = `
         <li class="author" style="float: left;">
           <span class="name">${user}</span>
-          <img src="images/avatar.jpg" alt="" />
+          <img src="/images/avatar.jpg" alt="" />
         </li>
         <li>
           <a href="/rest/logout" class="button large">로그아웃</a>

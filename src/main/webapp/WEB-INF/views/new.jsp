@@ -36,7 +36,7 @@
         <article class="post">
           <header>
             <div class="title">
-              <h2><a href="/single/">Add Post</a></h2>
+              <h2>Create Post</h2>
               <p>You can create new diary!</p>
             </div>
           </header>
@@ -93,15 +93,7 @@
 
         <!-- author -->
         <section>
-          <ul class="actions">
-            <!-- Login state -->
-           <li class="author" style="float: left;">
-              <span class="name">${user["name"]}</span>
-              <img src="/images/avatar.jpg" alt="" />
-            </li>
-            <li>
-              <a href="/single/" class="button large">로그아웃</a>
-            </li>
+          <ul class="actions" id="area-account">
           </ul>
         </section>
 
@@ -148,5 +140,9 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/loginCheck.js"></script>
+    <script>
+      loginCheck(`${user["name"]}`);
+    </script>
   </body>
 </html>

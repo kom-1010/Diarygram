@@ -19,7 +19,7 @@
         <nav class="links">
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="#">My Page</a></li>
+            <li><a href="/mine/">My Page</a></li>
             <li><a href="/new/">New Post</a></li>
           </ul>
         </nav>
