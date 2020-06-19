@@ -46,9 +46,9 @@
 
     <!-- author -->
     <section>
-      <ul class="actions" id="area-account">
-      </ul>
-    </section>
+    <ul class="actions" id="area-account">
+    </ul>
+  </section>
 
     <!-- Footer -->
     <section id="footer">
@@ -93,11 +93,11 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/load.js"></script>
 <script src="/js/loginCheck.js"></script>
 <script>
-  var user = `${user["name"]}`;
-  loginCheck(user);
+  loadPost(`${startPost["id"]}`, `${lastPost["id"]}`, `/rest`);
+  loginCheck(`${user["name"]}`);
 </script>
 
 </body>

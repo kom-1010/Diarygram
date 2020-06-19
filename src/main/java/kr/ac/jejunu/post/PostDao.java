@@ -13,10 +13,63 @@ public class PostDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    // post_info 테이블의 id를 입력하여 가져온다.
     public Post get(Integer id) {
         Object[] params = new Object[] {id};
         String sql = "select * from post_info where id = ?";
         return jdbcTemplate.query(sql, params, rs -> {
+            Post post = null;
+            if (rs.next()) {
+                post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setUser_id(rs.getInt("user_id"));
+                post.setCreated_at(rs.getString("created_at"));
+            }
+            return post;
+        });
+    }
+
+    // post_info 테이블의 user_id와 id를 입력하여 가져온다.
+    public Post get(Integer userId, Integer id) {
+        Object[] params = new Object[] {id, userId};
+        String sql = "select * from post_info where id = ? and user_id = ?";
+        return jdbcTemplate.query(sql, params, rs -> {
+            Post post = null;
+            if (rs.next()) {
+                post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setUser_id(rs.getInt("user_id"));
+                post.setCreated_at(rs.getString("created_at"));
+            }
+            return post;
+        });
+    }
+
+    // post_info 테이블의 마지막 행을 가져온다.
+    public Post start() {
+        String sql = "select * from post_info limit 1";
+        return jdbcTemplate.query(sql, rs -> {
+            Post post = null;
+            if (rs.next()) {
+                post = new Post();
+                post.setId(rs.getInt("id"));
+                post.setTitle(rs.getString("title"));
+                post.setContent(rs.getString("content"));
+                post.setUser_id(rs.getInt("user_id"));
+                post.setCreated_at(rs.getString("created_at"));
+            }
+            return post;
+        });
+    }
+
+    // post_info 테이블의 마지막 행을 가져온다.
+    public Post last() {
+        String sql = "select * from post_info order by id desc limit 1";
+        return jdbcTemplate.query(sql, rs -> {
             Post post = null;
             if (rs.next()) {
                 post = new Post();

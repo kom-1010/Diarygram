@@ -3,10 +3,8 @@
 // user 데잍터는 rest/user/{id}를 통해 가져올 수 있다.
 // scroll을 내릴 때마다 새로운 데이터 추가하는 코드 작성할  계획
 
-const main = document.getElementById("main");
-let startId = 26;
-
-function writeHTML(data) {
+function writePost(data) {
+    const main = document.getElementById("main");
     main.innerHTML += `
                 <article class="post">
                     <header>
@@ -32,18 +30,20 @@ function writeHTML(data) {
                 </article>`;
 }
 
-function loadData(startId){
-    for(var i=startId;i<startId+3;i++) {
+function loadPost(startId, lastId, url){
+    for(let i=lastId;i>lastId-3;i--) {
+        console.log(`${url}/${i}`)
+        if(i<startId) {
+            break;
+        }
         $.ajax({
             type: 'get',
-            url: `rest/${i}`,
+            url: `${url}/${i}`,
             dataType: 'json',
-            success: writeHTML ,
+            success: writePost ,
             error: function (error) {
                 console.log("error: ", error);
             }
         });
     }
 }
-
-loadData(startId);

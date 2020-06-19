@@ -1,10 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
     <title>Diarygram</title>
@@ -32,42 +27,6 @@
 
       <!-- Main -->
       <div id="main">
-        <!-- Post -->
-        <article class="post">
-          <header>
-            <div class="title">
-              <h2><a href="/single/">${post.title}</a></h2>
-            </div>
-            <div class="meta">
-              <time class="published" datetime=${post.created_at}
-                >${post.created_at}</time>
-              <div class="author">
-                <span class="name">${user.name}</span
-                ><img src="/images/avatar.jpg" alt="" />
-              </div>
-            </div>
-          </header>
-          <a href="/single/" class="image featured"
-            ><img src="/images/pic01.jpg" alt=""
-          /></a>
-          <p>
-            ${post.content}
-          </p>
-          <footer>
-            <ul class="stats">
-              <li><a href="#" class="icon solid fa-heart">28</a></li>
-              <li><a href="#" class="icon solid fa-comment">128</a></li>
-            </ul>
-          </footer>
-        </article>
-
-        <!-- Pagination -->
-        <ul class="actions pagination">
-          <li>
-            <a href="" class="disabled button large previous">Previous Page</a>
-          </li>
-          <li><a href="#" class="button large next">Next Page</a></li>
-        </ul>
       </div>
 
       <!-- Sidebar -->
@@ -85,25 +44,8 @@
           </header>
         </section>
 
-        <!-- author -->
         <section>
-          <ul class="actions">
-            <!-- Not login state-->
-            <!-- <li>
-              <a href="/login/" class="button large">로그인</a>
-            </li>
-            <li>
-              <a href="/signup/" class="button large">회원가입</a>
-			</li> -->
-
-            <!-- Login state -->
-            <li class="author" style="float: left;">
-              <span class="name">Jinsu</span>
-              <img src="/images/avatar.jpg" alt="" />
-            </li>
-            <li>
-              <a href="/single/" class="button large">로그아웃</a>
-            </li>
+          <ul class="actions" id="area-account">
           </ul>
         </section>
 
@@ -150,5 +92,11 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/loginCheck.js"></script>
+    <script src="/js/load.js"></script>
+    <script>
+      loadPost(`${startPost["id"]}`, `${lastPost["id"]}`, `/rest/${user["id"]}`);
+      loginCheck(`${user["name"]}`);
+    </script>
   </body>
 </html>

@@ -30,6 +30,16 @@ public class RestController {
         return modelMap;
     }
 
+    @GetMapping("/{user_id}/{id}")
+    public ModelMap get(@PathVariable("user_id") Integer userId, @PathVariable("id") Integer id) {
+        ModelMap modelMap = new ModelMap();
+        Post post = postDao.get(userId, id);
+        User user = userDao.get(userId);
+        modelMap.addAttribute(post);
+        modelMap.addAttribute(user);
+        return modelMap;
+    }
+
     @PostMapping("/signup")
     public View createUser(String username, String password, String checkPassword){
         String url = "/signup";

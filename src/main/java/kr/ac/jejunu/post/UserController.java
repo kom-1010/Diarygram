@@ -23,6 +23,10 @@ public class UserController {
     @RequestMapping("/")
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("index");
+        Post startPost = postDao.start();
+        Post lastPost = postDao.last();
+        modelAndView.addObject("startPost", startPost);
+        modelAndView.addObject("lastPost", lastPost);
         return modelAndView;
     }
 
@@ -31,8 +35,12 @@ public class UserController {
     }
 
     @RequestMapping("/mine/")
-    public ModelAndView mine(@PathVariable("user") User user){
+    public ModelAndView mine(){
         ModelAndView modelAndView = new ModelAndView("mine");
+        Post startPost = postDao.start();
+        Post lastPost = postDao.last();
+        modelAndView.addObject("startPost", startPost);
+        modelAndView.addObject("lastPost", lastPost);
         return modelAndView;
     }
 
