@@ -3,15 +3,18 @@ package kr.ac.jejunu.post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 @RequestMapping
@@ -34,7 +37,7 @@ public class UserController {
     public void login(){
     }
 
-    @RequestMapping("/mine/")
+    @RequestMapping("/mine")
     public ModelAndView mine(){
         ModelAndView modelAndView = new ModelAndView("mine");
         Post startPost = postDao.start();
@@ -52,15 +55,6 @@ public class UserController {
     public void signup(){
     }
 
-    @RequestMapping("/single/{id}")
-    public ModelAndView single(@PathVariable("id") Integer id){
-        ModelAndView modelAndView = new ModelAndView("single");
-        Post post = postDao.get(id);
-        User user = userDao.get(post.getUser_id());
-        modelAndView.addObject("post", post);
-        modelAndView.addObject("user", user);
-        return modelAndView;
-    }
 
     @RequestMapping("/user")
     public ModelAndView getPost(@RequestParam("id") Integer id) {
@@ -81,6 +75,24 @@ public class UserController {
     public ModelAndView error(Exception e) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("e", e);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public void upload() {
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public ModelAndView upload(MultipartFile file, HttpServletRequest request) throws IOException {
+        File path = new File(request.getServletContext().getRealPath("/")+
+                "/WEB-INF/static/images/post/" + file.getOriginalFilename());
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        bufferedOutputStream.write(file.getBytes());
+        bufferedOutputStream.close();
+
+        ModelAndView modelAndView = new ModelAndView("upload");
+        modelAndView.addObject("image", file.getOriginalFilename());
         return modelAndView;
     }
 }

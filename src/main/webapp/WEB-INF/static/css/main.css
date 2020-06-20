@@ -1,5 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 
 /*
 	Future Imperfect by HTML5 UP
@@ -2762,8 +2763,9 @@ ul.posts article header > :last-child {
 }
 
 .post > header .title h2 {
+    font-family: 'Nanum Brush Script', cursive;
     font-weight: 900;
-    font-size: 1.5em;
+    font-size: 3.0em;
 }
 
 .post > header .title > :last-child {
@@ -2814,6 +2816,11 @@ ul.posts article header > :last-child {
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
+}
+
+.post > p {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 20pt;
 }
 
 .post > footer {

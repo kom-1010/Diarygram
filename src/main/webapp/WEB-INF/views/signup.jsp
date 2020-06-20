@@ -24,8 +24,8 @@
         <nav class="links">
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/mine/">My Page</a></li>
-            <li><a href="/new/">New Post</a></li>
+            <li id="myPost"></li>
+            <li id="newPost"></li>
           </ul>
         </nav>
       </header>
@@ -155,5 +155,7 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/loginCheck.js"></script>
+    <script>loginCheck(`${user["name"]}`);</script>
   </body>
 </html>

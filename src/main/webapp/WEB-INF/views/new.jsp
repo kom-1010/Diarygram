@@ -1,10 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
     <title>Diarygram</title>
@@ -24,8 +20,8 @@
         <nav class="links">
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/mine/">My Page</a></li>
-            <li><a href="/new/">New Post</a></li>
+            <li id="myPost"></li>
+            <li id="newPost"></li>
           </ul>
         </nav>
       </header>
@@ -41,7 +37,6 @@
             </div>
           </header>
           <section>
-            <form method="post" action="/rest/new">
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
@@ -49,29 +44,27 @@
                     name="title"
                     value=""
                     placeholder="Title"
+                    id ="post-title"
                   />
                 </div>
-
-                <div class="col-12 actions">
-                  <button class="button icon solid fa-upload">Image</button>
-                </div>
-
+<%--                <div class="col-12 actions">--%>
+<%--                  <input type="file" name="image">--%>
+<%--                </div>--%>
                 <div class="col-12">
                   <textarea
                     name="content"
                     placeholder="Enter your message"
                     rows="6"
+                    id ="post-content"
                   ></textarea>
                 </div>
-
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Post" /></li>
+                    <li><input type="submit" value="Post" onclick="ajaxPost()" /></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>
               </div>
-            </form>
           </section>
         </article>
       </div>
@@ -143,6 +136,38 @@
     <script src="/js/loginCheck.js"></script>
     <script>
       loginCheck(`${user["name"]}`);
+    </script>
+    <script>
+      function ajaxPost() {
+        const title = document.getElementById("post-title").value;
+        const content = document.getElementById("post-content").value;
+
+        const data = new Object();
+        data["title"] = title;
+        data["content"] = content;
+
+        console.log(data);
+
+        if(data["title"]!="" && data["content"]!="") {
+          $.ajax({
+            type : "POST",
+            url : "/rest/new",
+            dataType : 'json',
+            contentType : 'application/json',
+            data : JSON.stringify(data),
+            success : function (data) {
+              alert("게시글을 작성하였습니다.")
+              location.href="/";
+            },
+            error   : function (error) {
+              console.log(error);
+            }
+          });
+        } else {
+          alert("제목과 내용을 입력해주세요.");
+        }
+
+      }
     </script>
   </body>
 </html>

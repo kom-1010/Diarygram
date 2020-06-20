@@ -6,11 +6,17 @@ import lombok.experimental.PackagePrivate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @org.springframework.web.bind.annotation.RestController
 @Controller
@@ -73,16 +79,37 @@ public class RestController {
     }
 
     @PostMapping("/new")
-    public View createPost(String title, String content, HttpSession session) {
-        String url = "/new";
-        Post post = new Post();
+    public Post createPost(@RequestBody Post post, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        post.setUser_id(user.getId());
+        postDao.insert(post);
+        return post;
+    }
 
-        if(user!=null) {
-            post.setTitle(title);
-            post.setContent(content);
-            post.setUser_id(user.getId());
-            postDao.insert(post);
+    // 게시물 삭제
+    // 게시물 작성자와 현재 로그인한 사용자가 일치한 경우 삭제 진행
+    @DeleteMapping("/delete/{id}")
+    public View deletePost(@PathVariable("id") Integer id, HttpSession session) {
+        System.out.println("delete post!");
+        String url = "/";
+        Post post = postDao.get(id);
+        User user = (User) session.getAttribute("user");
+        if (post.getUser_id() == user.getId()) {
+            postDao.delete(post.getId());
+            url = "/";
+        }
+        return new RedirectView(url);
+    }
+
+    // 게시물 삭제
+    // 게시물 작성자와 현재 로그인한 사용자가 일치한 경우 삭제 진행
+    @PutMapping("/update/{id}")
+    public View updatePost(@PathVariable("id") Integer id, HttpSession session) {
+        String url = "/";
+        Post post = postDao.get(id);
+        User user = (User) session.getAttribute("user");
+        if (post.getUser_id() == user.getId()) {
+            postDao.delete(post.getId());
             url = "/";
         }
         return new RedirectView(url);

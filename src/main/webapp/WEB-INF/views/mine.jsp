@@ -19,8 +19,8 @@
         <nav class="links">
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/mine/">My Page</a></li>
-            <li><a href="/new/">New Post</a></li>
+            <li id="myPost"></li>
+            <li id="newPost"></li>
           </ul>
         </nav>
       </header>
@@ -93,10 +93,12 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
-    <script src="/js/load.js"></script>
     <script>
-      loadPost(`${startPost["id"]}`, `${lastPost["id"]}`, `/rest/${user["id"]}`);
+      const startId = `${startPost["id"]}`;
+      let lastId = `${lastPost["id"]}`;
+      const url = (`${user["id"]}`==``) ? `undefined` : `/rest/${user["id"]}`;
       loginCheck(`${user["name"]}`);
     </script>
+    <script src="/js/load.js"></script>
   </body>
 </html>

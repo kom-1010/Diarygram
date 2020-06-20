@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +19,8 @@
     <nav class="links">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/mine/">My Page</a></li>
-        <li><a href="/new/">New Post</a></li>
+        <li id="myPost"></li>
+        <li id="newPost"></li>
       </ul>
     </nav>
   </header>
@@ -101,6 +101,10 @@
   loginCheck(`${user["name"]}`);
 </script>
 <script src="/js/load.js"></script>
+<script>
+  function ajaxDelete(){
 
+  }
+</script>
 </body>
 </html>

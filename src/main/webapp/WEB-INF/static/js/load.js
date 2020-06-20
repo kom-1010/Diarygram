@@ -4,7 +4,6 @@
 // scroll을 내릴 때마다 새로운 데이터 추가하는 코드 작성할  계획
 let currLastId;
 
-
 function writePost(data) {
     const main = document.getElementById("main");
     main.innerHTML += `
@@ -22,17 +21,20 @@ function writePost(data) {
                         </div>
                     </header>
                     <a href="/single/${data["post"]["id"]}" class="image featured"><img src="/images/pic01.jpg" alt=""/></a>
-                    <p>${data["post"]["content"]}</p>
+                    <p class="post-content">${data["post"]["content"]}</p>
                     <footer>
                         <ul class="stats">
                             <li><button class="icon solid fa-heart">28</button></li>
                             <li><a href="/single/" class="button large">128</a></li>
+                            <li><button>수정</button></li>
+                            <li><button onclick="ajaxDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>
                 </article>`;
 }
 
 function loadPost(startId, lastId, url){
+    console.log(url);
     let postLimit = 3;
     for(let i=lastId;i>lastId-postLimit;i--) {
         if(i<startId) {
@@ -40,7 +42,7 @@ function loadPost(startId, lastId, url){
         }
         $.ajax({
             type: 'get',
-            url: `${url}/${i}`,
+            url: `${url}/${i}/`,
             dataType: 'json',
             async: false,
             success: writePost ,
