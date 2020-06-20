@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,8 +103,16 @@
 </script>
 <script src="/js/load.js"></script>
 <script>
-  function ajaxDelete(){
-
+  function ajaxDelete(id){
+    console.log(id);
+    $.ajax({
+      type: 'delete',
+      url: '/rest/'+id,
+      async: false,
+    }).done(function(response){
+      alert("삭제하였습니다.");
+      location.href = "/";
+    });
   }
 </script>
 </body>

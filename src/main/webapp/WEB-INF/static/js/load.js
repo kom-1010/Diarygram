@@ -26,7 +26,7 @@ function writePost(data) {
                         <ul class="stats">
                             <li><button class="icon solid fa-heart">28</button></li>
                             <li><a href="/single/" class="button large">128</a></li>
-                            <li><button>수정</button></li>
+                            <li><a href="/update/${data["post"]["id"]}"><button>수정</button></a></li>
                             <li><button onclick="ajaxDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>
@@ -34,7 +34,6 @@ function writePost(data) {
 }
 
 function loadPost(startId, lastId, url){
-    console.log(url);
     let postLimit = 3;
     for(let i=lastId;i>lastId-postLimit;i--) {
         if(i<startId) {

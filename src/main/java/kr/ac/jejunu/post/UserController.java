@@ -51,6 +51,14 @@ public class UserController {
     public void newPost(){
     }
 
+    @RequestMapping("/update/{id}")
+    public ModelAndView updatePost(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("update");
+        Post post = postDao.get(id);
+        modelAndView.addObject("post", post);
+        return modelAndView;
+    }
+
     @RequestMapping("/signup")
     public void signup(){
     }

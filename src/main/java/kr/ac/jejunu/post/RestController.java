@@ -86,32 +86,16 @@ public class RestController {
         return post;
     }
 
-    // 게시물 삭제
-    // 게시물 작성자와 현재 로그인한 사용자가 일치한 경우 삭제 진행
-    @DeleteMapping("/delete/{id}")
-    public View deletePost(@PathVariable("id") Integer id, HttpSession session) {
-        System.out.println("delete post!");
-        String url = "/";
-        Post post = postDao.get(id);
-        User user = (User) session.getAttribute("user");
-        if (post.getUser_id() == user.getId()) {
-            postDao.delete(post.getId());
-            url = "/";
-        }
-        return new RedirectView(url);
+    @DeleteMapping("/{id}")
+    public void deletePost(@PathVariable("id") Integer id) {
+        postDao.delete(id);
     }
 
     // 게시물 삭제
     // 게시물 작성자와 현재 로그인한 사용자가 일치한 경우 삭제 진행
-    @PutMapping("/update/{id}")
-    public View updatePost(@PathVariable("id") Integer id, HttpSession session) {
-        String url = "/";
-        Post post = postDao.get(id);
-        User user = (User) session.getAttribute("user");
-        if (post.getUser_id() == user.getId()) {
-            postDao.delete(post.getId());
-            url = "/";
-        }
-        return new RedirectView(url);
+    @PutMapping("")
+    public Post updatePost(@RequestBody Post post) {
+        postDao.update(post);
+        return post;
     }
 }
