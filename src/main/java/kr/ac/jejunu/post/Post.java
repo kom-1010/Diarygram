@@ -9,4 +9,5 @@ public class Post {
     private String content;
     private Integer user_id;
     private String created_at;
+    private Integer likes;
 }

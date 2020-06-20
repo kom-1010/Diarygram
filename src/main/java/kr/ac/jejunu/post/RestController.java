@@ -91,8 +91,6 @@ public class RestController {
         postDao.delete(id);
     }
 
-    // 게시물 삭제
-    // 게시물 작성자와 현재 로그인한 사용자가 일치한 경우 삭제 진행
     @PutMapping("")
     public Post updatePost(@RequestBody Post post) {
         postDao.update(post);

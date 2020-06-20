@@ -24,9 +24,9 @@ function writePost(data) {
                     <p class="post-content">${data["post"]["content"]}</p>
                     <footer>
                         <ul class="stats">
-                            <li><button class="icon solid fa-heart">28</button></li>
+                            <li><button class="icon solid fa-heart like-btn" onclick="ajaxLike(${data["post"]["id"]},'${data["post"]["title"]}','${data["post"]["content"]}',${data["post"]["likes"]})">${data["post"]["likes"]}</button></li>
                             <li><a href="/single/" class="button large">128</a></li>
-                            <li><a href="/update/${data["post"]["id"]}"><button>수정</button></a></li>
+                            <li><button><a href="/update/${data["post"]["id"]}">수정</a></button></li>
                             <li><button onclick="ajaxDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>

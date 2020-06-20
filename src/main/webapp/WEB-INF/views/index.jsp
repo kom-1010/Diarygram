@@ -104,7 +104,6 @@
 <script src="/js/load.js"></script>
 <script>
   function ajaxDelete(id){
-    console.log(id);
     $.ajax({
       type: 'delete',
       url: '/rest/'+id,
@@ -112,6 +111,32 @@
     }).done(function(response){
       alert("삭제하였습니다.");
       location.href = "/";
+    });
+  }
+</script>
+<script>
+  function ajaxLike(pId, pTitle, pContent, pLikes) {
+
+    const data = new Object();
+    data["id"] = pId;
+    data["title"] = pTitle;
+    data["content"] = pContent;
+    data["likes"] = pLikes+1;
+    console.log(data);
+
+    $.ajax({
+      type : "put",
+      url : `/rest`,
+      dataType : 'json',
+      contentType : 'application/json',
+      data : JSON.stringify(data),
+      success : function (data) {
+        alert("좋아요 성공");
+        location.href = "/";
+      },
+      error   : function (error) {
+        console.log(error);
+      }
     });
   }
 </script>

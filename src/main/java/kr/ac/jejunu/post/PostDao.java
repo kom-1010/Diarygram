@@ -26,6 +26,7 @@ public class PostDao {
                 post.setContent(rs.getString("content"));
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
+                post.setLikes(rs.getInt("likes"));
             }
             return post;
         });
@@ -44,6 +45,7 @@ public class PostDao {
                 post.setContent(rs.getString("content"));
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
+                post.setLikes(rs.getInt("likes"));
             }
             return post;
         });
@@ -61,6 +63,7 @@ public class PostDao {
                 post.setContent(rs.getString("content"));
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
+                post.setLikes(rs.getInt("likes"));
             }
             return post;
         });
@@ -78,6 +81,7 @@ public class PostDao {
                 post.setContent(rs.getString("content"));
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
+                post.setLikes(rs.getInt("likes"));
             }
             return post;
         });
@@ -98,8 +102,8 @@ public class PostDao {
     }
 
     public void update(Post post) {
-        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getUser_id(), post.getId()};
-        String sql = "update post_info set title = ?, content = ?, user_id = ? where id = ?";
+        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getLikes(), post.getId()};
+        String sql = "update post_info set title = ?, content = ?, likes = ? where id = ?";
         jdbcTemplate.update(sql, params);
     }
 

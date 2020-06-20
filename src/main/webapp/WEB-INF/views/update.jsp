@@ -146,7 +146,7 @@
         data["id"] = `${post.id}`;
         data["title"] = title;
         data["content"] = content;
-        data["user_id"] = `${post.user_id}`;
+        data["likes"] = `${post.likes}`;
         console.log(data);
 
         if(data["title"]!="" && data["content"]!="") {
