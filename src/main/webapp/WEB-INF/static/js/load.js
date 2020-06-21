@@ -1,7 +1,3 @@
-// ajax를 사용하여 데이터를 load하는 코드 작성하기
-// post 데이터는 rest/post/{id}를 통해 가져올 수 잇다.
-// user 데잍터는 rest/user/{id}를 통해 가져올 수 있다.
-// scroll을 내릴 때마다 새로운 데이터 추가하는 코드 작성할  계획
 let currLastId;
 
 function writePost(data) {
@@ -10,7 +6,7 @@ function writePost(data) {
                 <article class="post">
                     <header>
                         <div class="title">
-                            <h2><a href="/single/${data["post"]["id"]}">${data["post"]["title"]}</a></h2>
+                            <h2>${data["post"]["title"]}</h2>
                         </div>
                         <div class="meta">
                             <time class="published">${data["post"]["created_at"]}</time>
@@ -20,14 +16,14 @@ function writePost(data) {
                             </div>
                         </div>
                     </header>
-                    <a href="/single/${data["post"]["id"]}" class="image featured"><img src="/images/pic01.jpg" alt=""/></a>
+                    <img src="/images/pic01.jpg" alt=""/>
                     <p class="post-content">${data["post"]["content"]}</p>
                     <footer>
                         <ul class="stats">
-                            <li><button class="icon solid fa-heart like-btn" onclick="ajaxLike(${data["post"]["id"]},'${data["post"]["title"]}','${data["post"]["content"]}',${data["post"]["likes"]})">${data["post"]["likes"]}</button></li>
+                            <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]},'${data["post"]["title"]}','${data["post"]["content"]}',${data["post"]["likes"]})">${data["post"]["likes"]}</button></li>
                             <li><a href="/single/" class="button large">128</a></li>
-                            <li><button><a href="/update/${data["post"]["id"]}">수정</a></button></li>
-                            <li><button onclick="ajaxDelete(${data["post"]["id"]})">삭제</button></li>
+                            <li><a href="/update/${data["post"]["id"]}" class="button">수정</a></li>
+                            <li><button onclick="postDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>
                 </article>`;

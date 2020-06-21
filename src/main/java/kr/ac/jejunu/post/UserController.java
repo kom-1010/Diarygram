@@ -28,13 +28,10 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("index");
         Post startPost = postDao.start();
         Post lastPost = postDao.last();
+
         modelAndView.addObject("startPost", startPost);
         modelAndView.addObject("lastPost", lastPost);
         return modelAndView;
-    }
-
-    @RequestMapping("/login")
-    public void login(){
     }
 
     @RequestMapping("/mine")
@@ -42,8 +39,18 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("mine");
         Post startPost = postDao.start();
         Post lastPost = postDao.last();
+
         modelAndView.addObject("startPost", startPost);
         modelAndView.addObject("lastPost", lastPost);
+        return modelAndView;
+    }
+
+    @RequestMapping("/update/{id}")
+    public ModelAndView updatePost(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("update");
+        Post post = postDao.get(id);
+
+        modelAndView.addObject("post", post);
         return modelAndView;
     }
 
@@ -51,27 +58,12 @@ public class UserController {
     public void newPost(){
     }
 
-    @RequestMapping("/update/{id}")
-    public ModelAndView updatePost(@PathVariable Integer id){
-        ModelAndView modelAndView = new ModelAndView("update");
-        Post post = postDao.get(id);
-        modelAndView.addObject("post", post);
-        return modelAndView;
+    @RequestMapping("/login")
+    public void login(){
     }
 
     @RequestMapping("/signup")
     public void signup(){
-    }
-
-
-    @RequestMapping("/user")
-    public ModelAndView getPost(@RequestParam("id") Integer id) {
-        ModelAndView modelAndView = new ModelAndView();
-        Post post = postDao.get(id);
-        User user = userDao.get(post.getUser_id());
-        modelAndView.addObject("post", post);
-        modelAndView.addObject("user", user);
-        return modelAndView;
     }
 
     @RequestMapping("/exception")

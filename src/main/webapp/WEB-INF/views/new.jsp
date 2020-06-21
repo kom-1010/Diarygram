@@ -45,6 +45,7 @@
                     value=""
                     placeholder="Title"
                     id ="post-title"
+                    autocomplete="off"
                   />
                 </div>
 <%--                <div class="col-12 actions">--%>
@@ -60,7 +61,7 @@
                 </div>
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Post" onclick="ajaxPost()" /></li>
+                    <li><input type="submit" value="Post" onclick="postCreate()" /></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>
@@ -137,37 +138,7 @@
     <script>
       loginCheck(`${user["name"]}`);
     </script>
-    <script>
-      function ajaxPost() {
-        const title = document.getElementById("post-title").value;
-        const content = document.getElementById("post-content").value;
-
-        const data = new Object();
-        data["title"] = title;
-        data["content"] = content;
-
-        console.log(data);
-
-        if(data["title"]!="" && data["content"]!="") {
-          $.ajax({
-            type : "POST",
-            url : "/rest/new",
-            dataType : 'json',
-            contentType : 'application/json',
-            data : JSON.stringify(data),
-            success : function (data) {
-              alert("게시글을 작성하였습니다.")
-              location.href="/";
-            },
-            error   : function (error) {
-              console.log(error);
-            }
-          });
-        } else {
-          alert("제목과 내용을 입력해주세요.");
-        }
-
-      }
-    </script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/postHandle.js"></script>
   </body>
 </html>

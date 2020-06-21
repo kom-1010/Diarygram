@@ -48,23 +48,26 @@
                     name="username"
                     value=""
                     placeholder="username"
+                    autocomplete="off"
                   />
                 </div>
 
                 <div class="col-12 col-12-xsmall">
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     value=""
                     placeholder="password"
+                    autocomplete="off"
                   />
                 </div>
                 <div class="col-12 col-12-xsmall">
                   <input
-                    type="text"
+                    type="password"
                     name="checkPassword"
                     value=""
                     placeholder="check password"
+                    autocomplete="off"
                   />
                 </div>
 
