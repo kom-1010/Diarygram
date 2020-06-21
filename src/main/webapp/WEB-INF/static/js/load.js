@@ -2,7 +2,34 @@ let currLastId;
 
 function writePost(data) {
     const main = document.getElementById("main");
-    main.innerHTML += `
+    if(loginDo=="") {
+        main.innerHTML += `
+                <article class="post">
+                    <header>
+                        <div class="title">
+                            <h2>${data["post"]["title"]}</h2>
+                        </div>
+                        <div class="meta">
+                            <time class="published">${data["post"]["created_at"]}</time>
+                            <div class="author">
+                                <span class="name">${data["user"]["name"]}</span>
+                                <img src="/images/avatar.jpg" alt="" />
+                            </div>
+                        </div>
+                    </header>
+                    <img src="/images/pic01.jpg" alt=""/>
+                    <p class="post-content">${data["post"]["content"]}</p>
+                    <footer>
+                        <ul class="stats">
+                            <li><a href="/login" class="icon solid fa-heart button" onclick="alert('로그인이 필요한 서비스입니다.')">${data["post"]["likes"]}</a></li>
+                            <li><a href="/single/" class="button large like-btn">128</a></li>
+                            <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">수정</a></li>
+                            <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">삭제</a></li>
+                        </ul>
+                    </footer>
+                </article>`;
+    } else {
+        main.innerHTML += `
                 <article class="post">
                     <header>
                         <div class="title">
@@ -21,12 +48,13 @@ function writePost(data) {
                     <footer>
                         <ul class="stats">
                             <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]},'${data["post"]["title"]}','${data["post"]["content"]}',${data["post"]["likes"]})">${data["post"]["likes"]}</button></li>
-                            <li><a href="/single/" class="button large">128</a></li>
+                            <li><a href="/single/" class="button large like-btn">128</a></li>
                             <li><a href="/update/${data["post"]["id"]}" class="button">수정</a></li>
                             <li><button onclick="postDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>
                 </article>`;
+    }
 }
 
 function loadPost(startId, lastId, url){
@@ -49,7 +77,7 @@ function loadPost(startId, lastId, url){
     }
 }
 
-loadPost(startId, lastId, url);
+loadPost(startId, lastId, url, loginDo);
 
 function getCurrentScrollPercentage(){
     return (window.scrollY + window.innerHeight) / document.body.clientHeight * 100
