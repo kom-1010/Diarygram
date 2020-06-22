@@ -2,7 +2,7 @@ let currLastId;
 
 function writePost(data) {
     const main = document.getElementById("main");
-    if(loginDo=="") {
+    if(loginUser=="") {
         main.innerHTML += `
                 <article class="post">
                     <header>
@@ -13,7 +13,7 @@ function writePost(data) {
                             <time class="published">${data["post"]["created_at"]}</time>
                             <div class="author">
                                 <span class="name">${data["user"]["name"]}</span>
-                                <img src="/images/avatar.jpg" alt="" />
+                                <img src="/images/user/${data["user"]["profile"]}" alt="" />
                             </div>
                         </div>
                     </header>
@@ -39,7 +39,7 @@ function writePost(data) {
                             <time class="published">${data["post"]["created_at"]}</time>
                             <div class="author">
                                 <span class="name">${data["user"]["name"]}</span>
-                                <img src="/images/avatar.jpg" alt="" />
+                                <img src="/images/user/${data["user"]["profile"]}" alt="" />
                             </div>
                         </div>
                     </header>
@@ -77,7 +77,7 @@ function loadPost(startId, lastId, url){
     }
 }
 
-loadPost(startId, lastId, url, loginDo);
+loadPost(startId, lastId, url, loginUser);
 
 function getCurrentScrollPercentage(){
     return (window.scrollY + window.innerHeight) / document.body.clientHeight * 100

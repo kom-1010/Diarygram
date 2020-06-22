@@ -23,6 +23,7 @@ public class UserDao {
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
                 user.setPassword(rs.getString("password"));
+                user.setProfile(rs.getString("profile"));
             }
             return user;
         });
@@ -38,14 +39,15 @@ public class UserDao {
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
                 user.setPassword(rs.getString("password"));
+                user.setProfile(rs.getString("profile"));
             }
             return user;
         });
     }
 
     public void insert(User user) {
-        Object[] params = new Object[] {user.getName(), user.getPassword()};
-        String sql = "insert into user_info(name, password) values (?, ?)";
+        Object[] params = new Object[] {user.getName(), user.getPassword(), user.getProfile()};
+        String sql = "insert into user_info(name, password, profile) values (?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -58,8 +60,8 @@ public class UserDao {
     }
 
     public void update(User user) {
-        Object[] params = new Object[] {user.getName(), user.getPassword(), user.getId()};
-        String sql = "update user_info set name = ?, password = ? where id = ?";
+        Object[] params = new Object[] {user.getName(), user.getPassword(), user.getProfile(), user.getId()};
+        String sql = "update user_info set name = ?, password = ?, profile = ? where id = ?";
         jdbcTemplate.update(sql, params);
     }
 

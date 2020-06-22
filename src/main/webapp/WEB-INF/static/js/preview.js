@@ -1,4 +1,4 @@
-const postImg = document.getElementById("post-image");
+const postImg = document.getElementById("input-image");
 let sel_file;
 
 postImg.addEventListener('change', readURL);

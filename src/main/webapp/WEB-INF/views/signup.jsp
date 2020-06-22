@@ -14,6 +14,7 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -40,8 +41,13 @@
             </div>
           </header>
           <section>
-            <form id="form-signup" method="post" action="/rest/signup">
+            <form action="/rest/signup" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
+                <div class="col-12">
+                  <img id="img-area" class="img-fluid rounded-circle" width="600px" height="600px" alt="" style="display: block; margin: 15px auto;">
+                  <label for="input-image" class="button" style="display: block; margin: 15px auto;">이미지</label>
+                  <input type="file" name="profile" id="input-image" style="display: none;">
+                </div>
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
@@ -70,11 +76,6 @@
                     autocomplete="off"
                   />
                 </div>
-
-                <div class="col-12 actions">
-                  <button class="button icon solid fa-upload">Image</button>
-                </div>
-
                 <div class="col-12">
                   <ul class="actions">
                     <li><input type="submit" value="signup" id="btn-signup" /></li>
@@ -159,6 +160,10 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
-    <script>loginCheck(`${user["name"]}`);</script>
+    <script>
+      const loginDo = `${user["name"]}`;
+      loginCheck(loginDo);
+    </script>
+    <script src="/js/preview.js"></script>
   </body>
 </html>

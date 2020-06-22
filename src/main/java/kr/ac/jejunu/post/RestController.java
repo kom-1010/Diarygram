@@ -47,13 +47,27 @@ public class RestController {
     }
 
     @PostMapping("/signup")
-    public View createUser(String username, String password, String checkPassword){
+    public View createUser(MultipartFile profile, String username, String password, String checkPassword, HttpServletRequest request) throws IOException {
         String url = "/signup";
+
         if(password.equals(checkPassword)) {
+            String orgFilename = profile.getOriginalFilename();
+            String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
+            String filename = username + ext;
+
             User user = new User();
             user.setName(username);
             user.setPassword(password);
+            user.setProfile(filename);
             userDao.insert(user);
+
+            File path = new File(request.getServletContext().getRealPath("/")+
+                    "/WEB-INF/static/images/user/" + filename);
+            FileOutputStream fileOutputStream = new FileOutputStream(path);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            bufferedOutputStream.write(profile.getBytes());
+            bufferedOutputStream.close();
+
             url = "/";
         }
         return new RedirectView(url);

@@ -66,10 +66,6 @@ public class UserController {
     public void signup(){
     }
 
-    @RequestMapping("images/post/hello")
-    public void hello(){
-    }
-
     @RequestMapping("/exception")
     public void Exception() {
         throw new RuntimeException("RuntimeException");
@@ -79,27 +75,6 @@ public class UserController {
     public ModelAndView error(Exception e) {
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("e", e);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-    public void upload() {
-    }
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ModelAndView upload(@RequestParam("image") MultipartFile file, HttpServletRequest request) throws IOException {
-        String orgFilename = file.getOriginalFilename();
-        String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
-        String filename = "test" + ext;
-        File path = new File(request.getServletContext().getRealPath("/")+
-                "/WEB-INF/static/images/post/" + filename);
-        FileOutputStream fileOutputStream = new FileOutputStream(path);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-        bufferedOutputStream.write(file.getBytes());
-        bufferedOutputStream.close();
-
-        ModelAndView modelAndView = new ModelAndView("upload");
-        modelAndView.addObject("url", "/images/post/" + filename);
         return modelAndView;
     }
 }

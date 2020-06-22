@@ -14,7 +14,8 @@
     const startId = `${startPost["id"]}`;
     let lastId = `${lastPost["id"]}`;
     const url = `/rest`;
-    const loginDo = `${user["name"]}`;
+    const loginUser = `${user["name"]}`;
+    const loginProfile = `${user["profile"]}`;
   </script>
 </head>
 <body class="is-preload">
@@ -103,7 +104,7 @@
 <script src="/js/load.js"></script>
 <script src="/js/loginCheck.js"></script>
 <script>
-  loginCheck(loginDo);
+  loginCheck(loginUser, loginProfile);
 </script>
 <script src="/js/ajax.js"></script>
 <script src="js/postHandle.js"></script>
