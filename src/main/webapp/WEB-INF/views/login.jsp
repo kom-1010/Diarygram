@@ -148,6 +148,10 @@
     <script src="/js/main.js"></script>
     <script src="/js/comment.js"></script>
     <script src="/js/loginCheck.js"></script>
-    <script>loginCheck(`${user["name"]}`);</script>
+    <script>
+      const loginUser = `${user["name"]}`;
+      const loginProfile = `${user["profile"]}`;
+      loginCheck(loginUser, loginProfile);
+    </script>
   </body>
 </html>

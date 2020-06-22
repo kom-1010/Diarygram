@@ -44,7 +44,7 @@
             <form action="/rest/signup" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
                 <div class="col-12">
-                  <img id="img-area" class="img-fluid rounded-circle" width="600px" height="600px" alt="" style="display: block; margin: 15px auto;">
+                  <img src="/images/default_image.jpg" id="img-area" class="img-fluid rounded-circle" width="600px" height="600px" alt="" style="display: block; margin: 15px auto;">
                   <label for="input-image" class="button" style="display: block; margin: 15px auto;">이미지</label>
                   <input type="file" name="profile" id="input-image" style="display: none;">
                 </div>
@@ -161,8 +161,9 @@
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
     <script>
-      const loginDo = `${user["name"]}`;
-      loginCheck(loginDo);
+      const loginUser = `${user["name"]}`;
+      const loginProfile = `${user["profile"]}`;
+      loginCheck(loginUser, loginProfile);
     </script>
     <script src="/js/preview.js"></script>
   </body>

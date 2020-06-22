@@ -40,7 +40,7 @@
             <form action="/rest/new" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
                 <div class="col-12">
-                  <img id="img-area" width="800" height="500" alt="" style="display: block; margin: 15px auto;">
+                  <img src="/images/default_image.jpg" id="img-area" width="800" height="500" alt="" style="display: block; margin: 15px auto;">
                   <label for="input-image" class="button" style="display: block; margin: 15px auto;">이미지</label>
                   <input type="file" name="image" id="input-image" style="display: none;">
                 </div>
@@ -140,7 +140,9 @@
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
     <script>
-      loginCheck(`${user["name"]}`);
+      const loginUser = `${user["name"]}`;
+      const loginProfile = `${user["profile"]}`;
+      loginCheck(loginUser, loginProfile);
     </script>
     <script src="/js/ajax.js"></script>
     <script src="/js/postHandle.js"></script>

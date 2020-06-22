@@ -138,7 +138,9 @@
 <script src="/js/main.js"></script>
 <script src="/js/loginCheck.js"></script>
 <script>
-  loginCheck(`${user["name"]}`);
+  const loginUser = `${user["name"]}`;
+  const loginProfile = `${user["profile"]}`;
+  loginCheck(loginUser, loginProfile);
 </script>
 <script src="/js/ajax.js"></script>
 <script src="/js/postHandle.js"></script>
