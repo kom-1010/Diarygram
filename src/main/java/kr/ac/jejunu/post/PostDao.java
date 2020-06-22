@@ -27,6 +27,7 @@ public class PostDao {
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
                 post.setLikes(rs.getInt("likes"));
+                post.setImage(rs.getString("image"));
             }
             return post;
         });
@@ -46,6 +47,7 @@ public class PostDao {
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
                 post.setLikes(rs.getInt("likes"));
+                post.setImage(rs.getString("image"));
             }
             return post;
         });
@@ -64,6 +66,7 @@ public class PostDao {
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
                 post.setLikes(rs.getInt("likes"));
+                post.setImage(rs.getString("image"));
             }
             return post;
         });
@@ -82,14 +85,15 @@ public class PostDao {
                 post.setUser_id(rs.getInt("user_id"));
                 post.setCreated_at(rs.getString("created_at"));
                 post.setLikes(rs.getInt("likes"));
+                post.setImage(rs.getString("image"));
             }
             return post;
         });
     }
 
     public void insert(Post post) {
-        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getUser_id()};
-        String sql = "insert into post_info(title, content, user_id) values (?, ?, ?)";
+        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getUser_id(), post.getImage()};
+        String sql = "insert into post_info(title, content, user_id, image) values (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -102,8 +106,14 @@ public class PostDao {
     }
 
     public void update(Post post) {
-        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getLikes(), post.getId()};
-        String sql = "update post_info set title = ?, content = ?, likes = ? where id = ?";
+        Object[] params = new Object[] {post.getTitle(), post.getContent(), post.getLikes(), post.getImage(), post.getId()};
+        String sql = "update post_info set title = ?, content = ?, likes = ?, image = ? where id = ?";
+        jdbcTemplate.update(sql, params);
+    }
+
+    public void like(Integer id) {
+        Object[] params = new Object[] {id};
+        String sql = "update post_info set likes = likes + 1 where id = ?";
         jdbcTemplate.update(sql, params);
     }
 

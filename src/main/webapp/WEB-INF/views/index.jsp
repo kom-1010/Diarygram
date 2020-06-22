@@ -107,5 +107,29 @@
 </script>
 <script src="/js/ajax.js"></script>
 <script src="js/postHandle.js"></script>
+<script>
+  const $chatBtn = document.querySelector(".chat-btn");
+  $chatBtn.addEventListener("click", (event) => {
+    let className = event.target.className;
+    console.log(className);
+    if(className==='delete') {
+    const $post = event.target.parentElement.parentElement.parentElement.parentElement;
+    $post.innerHTML += `
+    <div class="chat-area">
+        <ul>
+            <li>chat1</li>
+            <li>chat2</li>
+            <li>chat3</li>
+        </ul>
+    </div>
+    `;
+    className = 'chat-btn';
+    } else if(className==='chat-btn') {
+      $post.innerHTML += `
+    <h1>helloworld</h1>
+    `;
+    }
+  })
+</script>
 </body>
 </html>

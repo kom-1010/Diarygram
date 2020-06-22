@@ -10,4 +10,5 @@ public class Post {
     private Integer user_id;
     private String created_at;
     private Integer likes;
+    private String image;
 }

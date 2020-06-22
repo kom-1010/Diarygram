@@ -37,7 +37,11 @@
             </div>
           </header>
           <section>
+            <form action="/rest/new" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
+                <div class="col-12">
+                  <input type="file" name="image" id="post-image">
+                </div>
                 <div class="col-12 col-12-xsmall">
                   <input
                     type="text"
@@ -48,9 +52,6 @@
                     autocomplete="off"
                   />
                 </div>
-<%--                <div class="col-12 actions">--%>
-<%--                  <input type="file" name="image">--%>
-<%--                </div>--%>
                 <div class="col-12">
                   <textarea
                     name="content"
@@ -61,11 +62,12 @@
                 </div>
                 <div class="col-12">
                   <ul class="actions">
-                    <li><input type="submit" value="Post" onclick="postCreate()" /></li>
+                    <li><input type="submit" value="Post"></li>
                     <li><a href="/" class="button">Cancle</a></li>
                   </ul>
                 </div>
               </div>
+            </form>
           </section>
         </article>
       </div>

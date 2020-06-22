@@ -16,6 +16,6 @@
     <input type="file" name="image">
     <input  type="submit">
 </form>
-<img src="${image}" />
+<img src="${url}" />
 </body>
 </html>

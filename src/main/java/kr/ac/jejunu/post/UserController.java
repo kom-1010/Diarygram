@@ -66,6 +66,10 @@ public class UserController {
     public void signup(){
     }
 
+    @RequestMapping("images/post/hello")
+    public void hello(){
+    }
+
     @RequestMapping("/exception")
     public void Exception() {
         throw new RuntimeException("RuntimeException");
@@ -83,16 +87,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ModelAndView upload(MultipartFile file, HttpServletRequest request) throws IOException {
+    public ModelAndView upload(@RequestParam("image") MultipartFile file, HttpServletRequest request) throws IOException {
+        String orgFilename = file.getOriginalFilename();
+        String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
+        String filename = "test" + ext;
         File path = new File(request.getServletContext().getRealPath("/")+
-                "/WEB-INF/static/images/post/" + file.getOriginalFilename());
+                "/WEB-INF/static/images/post/" + filename);
         FileOutputStream fileOutputStream = new FileOutputStream(path);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
         bufferedOutputStream.write(file.getBytes());
         bufferedOutputStream.close();
 
         ModelAndView modelAndView = new ModelAndView("upload");
-        modelAndView.addObject("image", file.getOriginalFilename());
+        modelAndView.addObject("url", "/images/post/" + filename);
         return modelAndView;
     }
 }

@@ -79,11 +79,33 @@ public class RestController {
     }
 
     @PostMapping("/new")
-    public Post createPost(@RequestBody Post post, HttpSession session) {
+    public View createPost(MultipartFile image, String title, String content, HttpServletRequest request, HttpSession session) throws IOException {
         User user = (User) session.getAttribute("user");
+        Post post = new Post();
+        String filename = "";
+
+        post.setTitle(title);
+        post.setContent(content);
         post.setUser_id(user.getId());
+        post.setLikes(0);
+        post.setImage(filename);
         postDao.insert(post);
-        return post;
+
+        String orgFilename = image.getOriginalFilename();
+        String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
+        filename = post.getId()+ "_" + title + ext;
+
+        post.setImage(filename);
+        postDao.update(post);
+
+        File path = new File(request.getServletContext().getRealPath("/")+
+                "/WEB-INF/static/images/post/" + filename);
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        bufferedOutputStream.write(image.getBytes());
+        bufferedOutputStream.close();
+
+        return new RedirectView("/");
     }
 
     @DeleteMapping("/{id}")
@@ -91,9 +113,31 @@ public class RestController {
         postDao.delete(id);
     }
 
-    @PutMapping("")
-    public Post updatePost(@RequestBody Post post) {
+    @PutMapping("/{id}")
+    public void likePost(@PathVariable("id") Integer id) {
+        postDao.like(id);
+    }
+
+    @PostMapping("/update/{id}")
+    public View updatePost(@PathVariable("id") Integer id, MultipartFile image, String title, String content, HttpServletRequest request, HttpSession session) throws IOException {
+        Post post = postDao.get(id);
+        String orgFilename = image.getOriginalFilename();
+        String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
+        String filename = post.getId()+ "_" + title + ext;
+
+        post.setTitle(title);
+        post.setContent(content);
+        post.setImage(filename);
+
         postDao.update(post);
-        return post;
+
+        File path = new File(request.getServletContext().getRealPath("/")+
+                "/WEB-INF/static/images/post/" + filename);
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        bufferedOutputStream.write(image.getBytes());
+        bufferedOutputStream.close();
+
+        return new RedirectView("/");
     }
 }

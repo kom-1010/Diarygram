@@ -17,12 +17,12 @@ function writePost(data) {
                             </div>
                         </div>
                     </header>
-                    <img src="/images/pic01.jpg" alt=""/>
+                    <img src="/images/post/${data["post"]["image"]}" width="800" height="500" alt="" style="display: block; margin: 50px auto;"/>
                     <p class="post-content">${data["post"]["content"]}</p>
                     <footer>
                         <ul class="stats">
                             <li><a href="/login" class="icon solid fa-heart button" onclick="alert('로그인이 필요한 서비스입니다.')">${data["post"]["likes"]}</a></li>
-                            <li><a href="/single/" class="button large like-btn">128</a></li>
+                            <li><button class="delete">128</button></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">수정</a></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">삭제</a></li>
                         </ul>
@@ -43,12 +43,12 @@ function writePost(data) {
                             </div>
                         </div>
                     </header>
-                    <img src="/images/pic01.jpg" alt=""/>
+                    <img src="/images/post/${data["post"]["image"]}" width="800" height="500" alt="" style="display: block; margin: 50px auto;"/>
                     <p class="post-content">${data["post"]["content"]}</p>
                     <footer>
                         <ul class="stats">
-                            <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]},'${data["post"]["title"]}','${data["post"]["content"]}',${data["post"]["likes"]})">${data["post"]["likes"]}</button></li>
-                            <li><a href="/single/" class="button large like-btn">128</a></li>
+                            <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]})">${data["post"]["likes"]}</button></li>
+                            <li><button class="delete">128</button></li>
                             <li><a href="/update/${data["post"]["id"]}" class="button">수정</a></li>
                             <li><button onclick="postDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>

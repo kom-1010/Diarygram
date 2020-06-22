@@ -9,6 +9,12 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="/css/main.css" />
+    <script>
+      const startId = `${startPost["id"]}`;
+      let lastId = `${lastPost["id"]}`;
+      const url = (`${user["id"]}`==``) ? `undefined` : `/rest/${user["id"]}`;
+      const loginDo = `${user["name"]}`;
+    </script>
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -94,10 +100,8 @@
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
     <script>
-      const startId = `${startPost["id"]}`;
-      let lastId = `${lastPost["id"]}`;
-      const url = (`${user["id"]}`==``) ? `undefined` : `/rest/${user["id"]}`;
-      loginCheck(`${user["name"]}`);
+
+      loginCheck(loginDo);
     </script>
     <script src="/js/load.js"></script>
     <script src="/js/ajax.js"></script>

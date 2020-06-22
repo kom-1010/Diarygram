@@ -37,30 +37,35 @@
         </div>
       </header>
       <section>
-        <div class="row gtr-uniform">
-          <div class="col-12 col-12-xsmall">
-            <input
-                    type="text"
-                    name="title"
-                    value="${post.title}"
-                    id ="post-title"
-                    autocomplete="off"
-            />
-          </div>
-          <div class="col-12">
+        <form action="/rest/update/${post.id}" method="POST" enctype="multipart/form-data">
+          <div class="row gtr-uniform">
+            <div class="col-12">
+              <input type="file" name="image" id="post-image" value="${post.image}">
+            </div>
+            <div class="col-12 col-12-xsmall">
+              <input
+                      type="text"
+                      name="title"
+                      value="${post.title}"
+                      id ="post-title"
+                      autocomplete="off"
+              />
+            </div>
+            <div class="col-12">
                   <textarea
                           name="content"
                           rows="6"
                           id ="post-content"
                   >${post.content}</textarea>
+            </div>
+            <div class="col-12">
+              <ul class="actions">
+                <li><input type="submit" value="Post"></li>
+                <li><a href="/" class="button">Cancle</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="col-12">
-            <ul class="actions">
-              <li><input type="submit" value="Post" onclick="postUpdate(`${post.id}`, `${post.likes}`)" /></li>
-              <li><a href="/" class="button">Cancle</a></li>
-            </ul>
-          </div>
-        </div>
+        </form>
       </section>
     </article>
   </div>
