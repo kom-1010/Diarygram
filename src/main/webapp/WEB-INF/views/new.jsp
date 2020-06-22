@@ -40,7 +40,9 @@
             <form action="/rest/new" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
                 <div class="col-12">
-                  <input type="file" name="image" id="post-image">
+                  <img id="img-area" width="800" height="500" alt="" style="display: block; margin: 15px auto;">
+                  <label for="post-image" class="button" style="display: block; margin: 15px auto;">이미지</label>
+                  <input type="file" name="image" id="post-image" style="display: none;">
                 </div>
                 <div class="col-12 col-12-xsmall">
                   <input
@@ -142,5 +144,6 @@
     </script>
     <script src="/js/ajax.js"></script>
     <script src="/js/postHandle.js"></script>
+    <script src="/js/preview.js"></script>
   </body>
 </html>
