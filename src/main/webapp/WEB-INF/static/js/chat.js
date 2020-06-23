@@ -6,14 +6,15 @@ function loadChat(postId, ul){
         async: false,
         success: (data) => {
             const chatData = data.chatList;
-            for(let i=0;i<chatData.length;i++) {
-                console.log(chatData[i]);
-                ul.innerHTML +=
-                    `<li>${chatData[i]["user_id"]} / ${chatData[i]["content"]} / ${chatData[i]["created_at"]} </li>`;
+            const userData = data.userList;
+            if (chatData !== undefined) {
+                for (let i = 0; i < chatData.length; i++) {
+                    ul.innerHTML +=
+                        `<li>${userData[i]["name"]} / ${chatData[i]["content"]} / ${chatData[i]["created_at"]} </li>`;
+                }
             }
         } ,
-        error: () => {
-        },
+        error: () => {},
     });
 }
 
@@ -29,3 +30,6 @@ function openChatArea(e, postId) {
     } else $chatArea.style.display = 'none';
 }
 
+function insertChat(postId) {
+
+}

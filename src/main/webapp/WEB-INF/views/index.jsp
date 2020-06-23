@@ -11,8 +11,8 @@
   />
   <link rel="stylesheet" href="/css/main.css" />
   <script>
-    const startId = `${startPost["id"]}`;
-    let lastId = `${lastPost["id"]}`;
+    const startId = `${startId}`;
+    let lastId = `${lastId}`;
     const url = `/rest`;
     const loginUser = `${user["name"]}`;
     const loginProfile = `${user["profile"]}`;
@@ -109,5 +109,6 @@
 <script src="/js/ajax.js"></script>
 <script src="js/postHandle.js"></script>
 <script src="js/chat.js"></script>
+
 </body>
 </html>

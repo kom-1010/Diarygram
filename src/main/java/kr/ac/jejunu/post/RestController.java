@@ -3,6 +3,7 @@ package kr.ac.jejunu.post;
 import groovyjarjarpicocli.CommandLine;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.PackagePrivate;
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +34,7 @@ public class RestController {
     @GetMapping("/{id}")
     public ModelMap getPost(@PathVariable("id") Integer id) {
         ModelMap modelMap = new ModelMap();
-        Post post = postDao.get(id);
+        Post post = postDao.findById(id).get();
         User user = userDao.findById(post.getUser_id()).get();
         modelMap.addAttribute(post);
         modelMap.addAttribute(user);
@@ -43,14 +45,18 @@ public class RestController {
     public ModelMap getChat(@PathVariable("post_id") Integer post_id) {
         ModelMap modelMap = new ModelMap();
         List<Chat> chat = chatDao.findByPost_id(post_id);
+        List<User> user = new ArrayList<>();
+        for(int i = 0, n = chat.size(); i < n; i++) user.add(userDao.findById(chat.get(i).getUser_id()).get());
+
         modelMap.addAttribute(chat);
+        modelMap.addAttribute(user);
         return modelMap;
     }
 
     @GetMapping("/{user_id}/{id}")
     public ModelMap getPost(@PathVariable("user_id") Integer userId, @PathVariable("id") Integer id) {
         ModelMap modelMap = new ModelMap();
-        Post post = postDao.get(userId, id);
+        Post post = postDao.findByUser_idAndId(userId, id);
         User user = userDao.findById(userId).get();
         modelMap.addAttribute(post);
         modelMap.addAttribute(user);
@@ -114,14 +120,14 @@ public class RestController {
         post.setUser_id(user.getId());
         post.setLikes(0);
         post.setImage(filename);
-        postDao.insert(post);
+        postDao.save(post);
 
         String orgFilename = image.getOriginalFilename();
         String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
         filename = post.getId()+ "_" + title + ext;
 
         post.setImage(filename);
-        postDao.update(post);
+        postDao.save(post); //원래는 update 였던 것
 
         File path = new File(request.getServletContext().getRealPath("/")+
                 "/WEB-INF/static/images/post/" + filename);
@@ -145,7 +151,7 @@ public class RestController {
 
     @PostMapping("/update/{id}")
     public View updatePost(@PathVariable("id") Integer id, MultipartFile image, String title, String content, HttpServletRequest request, HttpSession session) throws IOException {
-        Post post = postDao.get(id);
+        Post post = postDao.findById(id).get();
         String orgFilename = image.getOriginalFilename();
         String ext = orgFilename.substring(orgFilename.lastIndexOf("."));
         String filename = post.getId()+ "_" + title + ext;
@@ -154,7 +160,7 @@ public class RestController {
         post.setContent(content);
         post.setImage(filename);
 
-        postDao.update(post);
+        postDao.save(post); //원래는 update 였던 것
 
         File path = new File(request.getServletContext().getRealPath("/")+
                 "/WEB-INF/static/images/post/" + filename);
@@ -164,5 +170,16 @@ public class RestController {
         bufferedOutputStream.close();
 
         return new RedirectView("/");
+    }
+
+    @PostMapping("/chat")
+    public void createChat(String content, Integer postId, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Chat chat = new Chat();
+        chat.setContent(content);
+        chat.setPost_id(postId);
+        chat.setUser_id(user.getId());
+
+        chatDao.save(chat);
     }
 }

@@ -10,8 +10,8 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
     <script>
-      const startId = `${startPost["id"]}`;
-      let lastId = `${lastPost["id"]}`;
+      const startId = `${startId}`;
+      let lastId = `${lastId}`;
       const url = (`${user["id"]}`==``) ? `undefined` : `/rest/${user["id"]}`;
       const loginUser = `${user["name"]}`;
       const loginProfile = `${user["profile"]}`;

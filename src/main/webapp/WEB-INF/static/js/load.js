@@ -23,7 +23,7 @@ function writePost(data) {
                     <footer>
                         <ul class="stats">
                             <li><a href="/login" class="icon solid fa-heart button" onclick="alert('로그인이 필요한 서비스입니다.')">${data["post"]["likes"]}</a></li>
-                            <li><button class="chat-btn" onclick="openChatArea(this, ${data["post"]["id"]})">128</button></li>
+                            <li><button class="chat-btn" onclick="openChatArea(this, ${data["post"]["id"]})">댓글</button></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">수정</a></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">삭제</a></li>
                         </ul>
@@ -31,7 +31,7 @@ function writePost(data) {
                     <div class="chat-area" style="display: none;">
                         <form>
                             <input type="text">
-                            <button type="button">send</button>
+                            <button type="button" onclick="insertChat(${data["post"]["id"]})">send</button>
                             <ul class="chat-list"></ul>
                         </form>
                     </div>
@@ -56,20 +56,17 @@ function writePost(data) {
                     <footer>
                         <ul class="stats">
                             <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]})">${data["post"]["likes"]}</button></li>
-                            <li><button class="chat-btn" onclick="openChatArea(this)">128</button></li>
+                            <li><button class="chat-btn" onclick="openChatArea(this, ${data["post"]["id"]})">댓글</button></li>
                             <li><a href="/update/${data["post"]["id"]}" class="button">수정</a></li>
                             <li><button onclick="postDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
                     </footer>
                     <div class="chat-area" style="display: none;">
-                        <ul="stats">
-                            <li>jinsu : good!!</li>
-                            <li>jinsu : good!!</li>
-                            <li>jinsu : good!!</li>
-                            <li>jinsu : good!!</li>
-                            <li>jinsu : good!!</li>
-                            <button>다음</button>
-                        </ul>
+                        <form>
+                            <input type="text">
+                            <button type="button" onclick="insertChat(${data["post"]["id"]})">send</button>
+                            <ul class="chat-list"></ul>
+                        </form>
                     </div>
                 </article>`;
     }
