@@ -101,7 +101,6 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="js/chat.js"></script>
 <script src="/js/load.js"></script>
 <script src="/js/loginCheck.js"></script>
 <script>
@@ -109,5 +108,6 @@
 </script>c
 <script src="/js/ajax.js"></script>
 <script src="js/postHandle.js"></script>
+<script src="js/chat.js"></script>
 </body>
 </html>

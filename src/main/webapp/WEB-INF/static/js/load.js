@@ -23,11 +23,18 @@ function writePost(data) {
                     <footer>
                         <ul class="stats">
                             <li><a href="/login" class="icon solid fa-heart button" onclick="alert('로그인이 필요한 서비스입니다.')">${data["post"]["likes"]}</a></li>
-                            <li><button class="chat-btn">128</button></li>
+                            <li><button class="chat-btn" onclick="openChatArea(this, ${data["post"]["id"]})">128</button></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">수정</a></li>
                             <li><a href="/login" class="button" onclick="alert('로그인이 필요한 서비스입니다.')">삭제</a></li>
                         </ul>
                     </footer>
+                    <div class="chat-area" style="display: none;">
+                        <form>
+                            <input type="text">
+                            <button type="button">send</button>
+                            <ul class="chat-list"></ul>
+                        </form>
+                    </div>
                 </article>`;
     } else {
         main.innerHTML += `
@@ -49,7 +56,7 @@ function writePost(data) {
                     <footer>
                         <ul class="stats">
                             <li><button class="icon solid fa-heart like-btn" onclick="postLike(${data["post"]["id"]})">${data["post"]["likes"]}</button></li>
-                            <li><button class="chat-btn">128</button></li>
+                            <li><button class="chat-btn" onclick="openChatArea(this)">128</button></li>
                             <li><a href="/update/${data["post"]["id"]}" class="button">수정</a></li>
                             <li><button onclick="postDelete(${data["post"]["id"]})">삭제</button></li>
                         </ul>
@@ -81,14 +88,11 @@ function loadPost(startId, lastId, url){
             async: false,
             success: (data) => {
                 writePost(data);
-                chatBtn = document.querySelectorAll(".chat-btn");
-                for(let i=0;i<chatBtn.length;i++) {
-                    chatBtn[i].addEventListener("click", openChatArea, false);
-                }
+
             } ,
             error: () => {
                 postLimit ++;
-            }
+            },
         });
         currLastId = i-1;
     }

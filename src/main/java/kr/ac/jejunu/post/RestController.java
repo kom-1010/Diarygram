@@ -17,6 +17,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @org.springframework.web.bind.annotation.RestController
 @Controller
@@ -25,22 +27,31 @@ import java.io.IOException;
 public class RestController {
     private final UserDao userDao;
     private final PostDao postDao;
+    private final ChatDao chatDao;
 
     @GetMapping("/{id}")
-    public ModelMap get(@PathVariable("id") Integer id) {
+    public ModelMap getPost(@PathVariable("id") Integer id) {
         ModelMap modelMap = new ModelMap();
         Post post = postDao.get(id);
-        User user = userDao.get(post.getUser_id());
+        User user = userDao.findById(post.getUser_id()).get();
         modelMap.addAttribute(post);
         modelMap.addAttribute(user);
         return modelMap;
     }
 
+    @GetMapping("chat/{post_id}")
+    public ModelMap getChat(@PathVariable("post_id") Integer post_id) {
+        ModelMap modelMap = new ModelMap();
+        List<Chat> chat = chatDao.findByPost_id(post_id);
+        modelMap.addAttribute(chat);
+        return modelMap;
+    }
+
     @GetMapping("/{user_id}/{id}")
-    public ModelMap get(@PathVariable("user_id") Integer userId, @PathVariable("id") Integer id) {
+    public ModelMap getPost(@PathVariable("user_id") Integer userId, @PathVariable("id") Integer id) {
         ModelMap modelMap = new ModelMap();
         Post post = postDao.get(userId, id);
-        User user = userDao.get(userId);
+        User user = userDao.findById(userId).get();
         modelMap.addAttribute(post);
         modelMap.addAttribute(user);
         return modelMap;
@@ -59,7 +70,7 @@ public class RestController {
             user.setName(username);
             user.setPassword(password);
             user.setProfile(filename);
-            userDao.insert(user);
+            userDao.save(user);
 
             File path = new File(request.getServletContext().getRealPath("/")+
                     "/WEB-INF/static/images/user/" + filename);
@@ -76,7 +87,7 @@ public class RestController {
     @PostMapping("/login")
     public View login(String username, String password, HttpSession session) {
         String url = "/login";
-        User user = userDao.get(username);
+        User user = userDao.findByName(username);
         if(user != null) {
             if (user.getPassword().equals(password)) {
                 session.setAttribute("user", user);
