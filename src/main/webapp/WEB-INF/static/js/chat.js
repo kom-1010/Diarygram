@@ -10,7 +10,16 @@ function loadChat(postId, ul){
             if (chatData !== undefined) {
                 for (let i = 0; i < chatData.length; i++) {
                     ul.innerHTML +=
-                        `<li>${userData[i]["name"]} / ${chatData[i]["content"]} / ${chatData[i]["created_at"]} </li>`;
+                        `<tr>
+                                <td>${chatData[i]["created_at"]}</td> 
+                                <td>${chatData[i]["content"]}</td>
+                                <td>
+                                    <div class="author">
+                                        <span class="name">${userData[i]["name"]}</span>
+                                        <img src="/images/user/${userData[i]["profile"]}" alt="" />
+                                    </div>
+                                </td>
+                         </tr>`;
                 }
             }
         } ,
@@ -30,6 +39,26 @@ function openChatArea(e, postId) {
     } else $chatArea.style.display = 'none';
 }
 
-function insertChat(postId) {
+function insertChat(e, postId) {
+    const $inputChat = e.parentNode.querySelector(".input-chat");
+    const chatMessage =  $inputChat.value;
+    const $ul = e.parentNode.parentNode.querySelector(".chat-list");
+    const data = new Object();
+    data["post_id"] = postId;
+    data["content"] = chatMessage;
 
+    $.ajax({
+        type: 'post',
+        url: `/rest/chat/`,
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json',
+        async: false,
+        success: () => {
+            $ul.innerHTML = "";
+            loadChat(postId, $ul);
+            $inputChat.value = "";
+        } ,
+        error: () => {},
+    });
 }

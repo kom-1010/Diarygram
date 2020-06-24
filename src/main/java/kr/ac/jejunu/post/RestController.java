@@ -18,7 +18,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +48,7 @@ public class RestController {
         ModelMap modelMap = new ModelMap();
         List<Chat> chat = chatDao.findByPost_id(post_id);
         List<User> user = new ArrayList<>();
-        for(int i = 0, n = chat.size(); i < n; i++) user.add(userDao.findById(chat.get(i).getUser_id()).get());
+        for (int i = 0, n = chat.size(); i < n; i++) user.add(userDao.findById(chat.get(i).getUser_id()).get());
 
         modelMap.addAttribute(chat);
         modelMap.addAttribute(user);
@@ -115,11 +117,16 @@ public class RestController {
         Post post = new Post();
         String filename = "";
 
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String createdAt = simpleDateFormat.format(date);
+
         post.setTitle(title);
         post.setContent(content);
         post.setUser_id(user.getId());
         post.setLikes(0);
         post.setImage(filename);
+        post.setCreated_at(createdAt);
         postDao.save(post);
 
         String orgFilename = image.getOriginalFilename();
@@ -173,13 +180,14 @@ public class RestController {
     }
 
     @PostMapping("/chat")
-    public void createChat(String content, Integer postId, HttpSession session) {
+    public Chat createChat(@RequestBody Chat chat, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        Chat chat = new Chat();
-        chat.setContent(content);
-        chat.setPost_id(postId);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String createdAt = simpleDateFormat.format(date);
         chat.setUser_id(user.getId());
-
+        chat.setCreated_at(createdAt);
         chatDao.save(chat);
+        return chat;
     }
 }

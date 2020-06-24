@@ -30,10 +30,14 @@ function writePost(data) {
                     </footer>
                     <div class="chat-area" style="display: none;">
                         <form>
-                            <input type="text">
-                            <button type="button" onclick="insertChat(${data["post"]["id"]})">send</button>
-                            <ul class="chat-list"></ul>
+                            <input type="text" class="input-chat">
+                            <button class="button" type="button" onclick="insertChat(this, ${data["post"]["id"]})" style="display: block; margin: 15px auto;">댓글 작성</button>
                         </form>
+                        <div class="table-wrapper">
+                            <table>
+                                <tbody class="chat-list"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </article>`;
     } else {
@@ -63,10 +67,14 @@ function writePost(data) {
                     </footer>
                     <div class="chat-area" style="display: none;">
                         <form>
-                            <input type="text">
-                            <button type="button" onclick="insertChat(${data["post"]["id"]})">send</button>
-                            <ul class="chat-list"></ul>
+                            <input type="text" class="input-chat">
+                            <label class="button" type="button" onclick="insertChat(this, ${data["post"]["id"]})" style="display: block; margin: 15px auto;">댓글 작성</label>
                         </form>
+                        <div class="table-wrapper">
+                            <table>
+                                <tbody class="chat-list"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </article>`;
     }
