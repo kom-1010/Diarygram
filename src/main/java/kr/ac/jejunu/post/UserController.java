@@ -22,7 +22,7 @@ public class UserController {
     private final FileHandler fileHandler;
 
     @PostMapping("/signup")
-    public View createUser(MultipartFile profile, String username, String password, String checkPassword, HttpServletRequest request) throws IOException {
+    public View createUser(MultipartFile profile, String username, String password, String checkPassword, HttpServletRequest request, HttpSession session) throws IOException {
         String url = "/signup";
 
         if(password.equals(checkPassword)) {
@@ -39,6 +39,8 @@ public class UserController {
             userDao.save(user);
 
             fileHandler.fileSave(request, profile, filename, "/WEB-INF/static/images/user/");
+
+            session.setAttribute("user", user);
 
             url = "/";
         }
@@ -62,6 +64,22 @@ public class UserController {
     @RequestMapping("/logout")
     public View logout(HttpSession session) {
         session.removeAttribute("user");
+        return new RedirectView("/");
+    }
+
+    @PostMapping("/profile/{id}")
+    public View updateProfile(@PathVariable("id") Integer id, MultipartFile profile, String username, HttpServletRequest request, HttpSession session) throws IOException {
+        User user = userDao.findById(id).get();
+        String filename = fileHandler.getFilename(profile, username, id);
+
+        user.setName(username);
+        user.setProfile(filename);
+        userDao.save(user);
+
+        fileHandler.fileSave(request, profile, filename, "/WEB-INF/static/images/user/");
+
+        session.setAttribute("user", user);
+
         return new RedirectView("/");
     }
 

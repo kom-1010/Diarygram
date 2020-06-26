@@ -1,10 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
     <title>Diarygram</title>
@@ -14,7 +9,11 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+      const loginUser = `${user["name"]}`;
+      const loginProfile = `${user["profile"]}`;
+      const loginId = `${user["id"]}`;
+    </script>
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -104,15 +103,9 @@
         </section>
 
         <!-- author -->
+        <!-- author -->
         <section>
-          <ul class="actions">
-            <!-- Not login state-->
-            <li>
-              <a href="/login/" class="button large">로그인</a>
-            </li>
-            <li>
-              <a href="/signup/" class="button large">회원가입</a>
-            </li>
+          <ul class="actions" id="area-account">
           </ul>
         </section>
 
@@ -161,9 +154,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/loginCheck.js"></script>
     <script>
-      const loginUser = `${user["name"]}`;
-      const loginProfile = `${user["profile"]}`;
-      loginCheck(loginUser, loginProfile);
+      loginCheck(loginUser, loginProfile, loginId);
     </script>
     <script src="/js/preview.js"></script>
   </body>

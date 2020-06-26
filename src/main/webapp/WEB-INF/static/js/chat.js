@@ -23,8 +23,9 @@ function loadChat(postId, ul){
             const userData = data.userList;
             if (chatData !== undefined) {
                 for (let i = 0; i < chatData.length; i++) {
-                    ul.innerHTML +=
-                        `<tr>
+                    if(userData[i]["name"]==loginUser) {
+                        ul.innerHTML +=
+                            `<tr>
                                 <td><button onclick="deleteChat(${chatData[i]["id"]})">X</button></td>
                                 <td>${chatData[i]["created_at"]}</td> 
                                 <td>${chatData[i]["content"]}</td>
@@ -35,6 +36,20 @@ function loadChat(postId, ul){
                                     </div>
                                 </td>
                          </tr>`;
+                    } else {
+                        ul.innerHTML +=
+                            `<tr>
+                                <td><button onclick="alert('해당 글의 작성자만 가능합니다.')">X</button></td>
+                                <td>${chatData[i]["created_at"]}</td> 
+                                <td>${chatData[i]["content"]}</td>
+                                <td>
+                                    <div class="author">
+                                        <span class="name">${userData[i]["name"]}</span>
+                                        <img src="/images/user/${userData[i]["profile"]}" alt="" />
+                                    </div>
+                                </td>
+                         </tr>`;
+                    }
                 }
             }
         } ,
@@ -58,6 +73,12 @@ function insertChat(e, postId) {
     const $inputChat = e.parentNode.querySelector(".input-chat");
     const chatMessage =  $inputChat.value;
     const $ul = e.parentNode.parentNode.querySelector(".chat-list");
+
+    if(chatMessage=="") {
+        alert("메시지를 입력해주세요.");
+        return;
+    }
+
     const data = new Object();
     data["post_id"] = postId;
     data["content"] = chatMessage;

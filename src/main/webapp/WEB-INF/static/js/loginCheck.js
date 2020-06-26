@@ -22,6 +22,9 @@ function loginCheck(username, profile, id) {
           <img src="/images/user/${profile}" alt="" />
         </li>
         <li>
+          <a href="/profile/${id}" class="button large">프로필 수정</a>
+        </li>
+        <li>
           <a href="/user/logout" class="button large">로그아웃</a>
         </li>`
     }

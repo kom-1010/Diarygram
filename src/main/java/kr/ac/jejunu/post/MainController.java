@@ -15,6 +15,7 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 public class MainController {
     private final PostDao postDao;
+    private final UserDao userDao;
 
     @RequestMapping("/")
     public ModelAndView index(){
@@ -34,6 +35,13 @@ public class MainController {
     public ModelAndView updatePost(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView("update");
         modelAndView.addObject("post", postDao.findById(id).get());
+        return modelAndView;
+    }
+
+    @RequestMapping("/profile/{id}")
+    public ModelAndView profile(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("profile");
+        modelAndView.addObject("user", userDao.findById(id).get());
         return modelAndView;
     }
 
@@ -63,6 +71,9 @@ public class MainController {
 
     // posts 의 처음 id와 마지막 id를 modelAndView 에 넣어 반환
     private ModelAndView getModelAndView(ModelAndView modelAndView, List<Post> posts) {
+        if(posts.size()==0) {
+            return modelAndView;
+        }
         Integer startId = posts.get(0).getId();
         Integer lastId = posts.get(posts.size() - 1).getId();
 

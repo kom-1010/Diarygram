@@ -52,9 +52,9 @@
 
     <!-- author -->
     <section>
-    <ul class="actions" id="area-account">
-    </ul>
-  </section>
+      <ul class="actions" id="area-account">
+      </ul>
+    </section>
 
     <!-- Footer -->
     <section id="footer">
