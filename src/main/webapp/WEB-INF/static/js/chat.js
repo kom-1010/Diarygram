@@ -1,7 +1,21 @@
+function deleteChat(id) {
+    $.ajax({
+        type: 'delete',
+        url: `/chat/${id}`,
+        success: () => {
+            alert("댓글을 삭제하였습니다.");
+            location.href = "/";
+        } ,
+        error: () => {
+            alert("에러 발생")
+        }
+    })
+}
+
 function loadChat(postId, ul){
     $.ajax({
         type: 'get',
-        url: `/rest/chat/${postId}`,
+        url: `/chat/${postId}`,
         dataType: 'json',
         async: false,
         success: (data) => {
@@ -11,6 +25,7 @@ function loadChat(postId, ul){
                 for (let i = 0; i < chatData.length; i++) {
                     ul.innerHTML +=
                         `<tr>
+                                <td><button onclick="deleteChat(${chatData[i]["id"]})">X</button></td>
                                 <td>${chatData[i]["created_at"]}</td> 
                                 <td>${chatData[i]["content"]}</td>
                                 <td>
@@ -49,7 +64,7 @@ function insertChat(e, postId) {
 
     $.ajax({
         type: 'post',
-        url: `/rest/chat/`,
+        url: `/chat`,
         data: JSON.stringify(data),
         dataType: 'json',
         contentType: 'application/json',

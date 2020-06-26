@@ -1,72 +1,68 @@
 package kr.ac.jejunu.post;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 
+@org.springframework.web.bind.annotation.RestController
 @Controller
-@RequestMapping
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-    private final PostDao postDao;
 
-    @RequestMapping("/")
-    public ModelAndView index(){
-        ModelAndView modelAndView = new ModelAndView("index");
-        Integer startId = postDao.findAll().get(0).getId();
-        Integer lastId = postDao.findAll().get(postDao.findAll().size()-1).getId();
+    private final UserDao userDao;
+    private final FileHandler fileHandler;
 
-        modelAndView.addObject("startId", startId);
-        modelAndView.addObject("lastId", lastId);
-        return modelAndView;
+    @PostMapping("/signup")
+    public View createUser(MultipartFile profile, String username, String password, String checkPassword, HttpServletRequest request) throws IOException {
+        String url = "/signup";
+
+        if(password.equals(checkPassword)) {
+            User user = new User();
+            String filename = "";
+
+            user.setName(username);
+            user.setPassword(password);
+            user.setProfile(filename);
+            userDao.save(user);
+
+            filename = fileHandler.getFilename(profile, username, user.getId());
+            user.setProfile(filename);
+            userDao.save(user);
+
+            fileHandler.fileSave(request, profile, filename, "/WEB-INF/static/images/user/");
+
+            url = "/";
+        }
+        return new RedirectView(url);
     }
 
-    @RequestMapping("/mine")
-    public ModelAndView mine(){
-        ModelAndView modelAndView = new ModelAndView("mine");
-        Integer startId = postDao.findAll().get(0).getId();
-        Integer lastId = postDao.findAll().get(postDao.findAll().size()-1).getId();
+    @PostMapping("/login")
+    public View login(String username, String password, HttpSession session) {
+        String url = "/login";
+        User user = userDao.findByName(username);
 
-        modelAndView.addObject("startId", startId);
-        modelAndView.addObject("lastId", lastId);
-        return modelAndView;
+        if(user != null) {
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("user", user);
+                url = "/";
+            }
+        }
+        return new RedirectView(url);
     }
 
-    @RequestMapping("/update/{id}")
-    public ModelAndView updatePost(@PathVariable Integer id){
-        ModelAndView modelAndView = new ModelAndView("update");
-        Post post = postDao.findById(id).get();
-
-        modelAndView.addObject("post", post);
-        return modelAndView;
+    @RequestMapping("/logout")
+    public View logout(HttpSession session) {
+        session.removeAttribute("user");
+        return new RedirectView("/");
     }
 
-    @RequestMapping("/new")
-    public void newPost(){
-    }
-
-    @RequestMapping("/login")
-    public void login(){
-    }
-
-    @RequestMapping("/signup")
-    public void signup(){
-    }
-
-    @RequestMapping("/exception")
-    public void Exception() {
-        throw new RuntimeException("RuntimeException");
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ModelAndView error(Exception e) {
-        ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("e", e);
-        return modelAndView;
-    }
 }

@@ -41,7 +41,7 @@
             </div>
           </header>
           <section>
-            <form action="/rest/signup" method="POST" enctype="multipart/form-data">
+            <form action="/user/signup" method="POST" enctype="multipart/form-data">
               <div class="row gtr-uniform">
                 <div class="col-12">
                   <img src="/images/default_image.jpg" id="img-area" class="img-fluid rounded-circle" width="600px" height="600px" alt="" style="display: block; margin: 15px auto;">

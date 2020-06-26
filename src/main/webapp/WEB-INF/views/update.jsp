@@ -37,7 +37,7 @@
         </div>
       </header>
       <section>
-        <form action="/rest/update/${post.id}" method="POST" enctype="multipart/form-data">
+        <form action="/post/update/${post.id}" method="POST" enctype="multipart/form-data">
           <div class="row gtr-uniform">
             <div class="col-12">
               <img src="/images/post/${post.image}" id="img-area" width="800" height="500" alt="" style="display: block; margin: 15px auto;">

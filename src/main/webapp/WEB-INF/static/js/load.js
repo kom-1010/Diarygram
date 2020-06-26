@@ -70,9 +70,9 @@ function writePost(data) {
                             <input type="text" class="input-chat">
                             <label class="button" type="button" onclick="insertChat(this, ${data["post"]["id"]})" style="display: block; margin: 15px auto;">댓글 작성</label>
                         </form>
-                        <div class="table-wrapper">
+                        <div class="table-wrapper" >
                             <table>
-                                <tbody class="chat-list"></tbody>
+                                <tbody class="chat-list" style="border: 1px solid"></tbody>
                             </table>
                         </div>
                     </div>

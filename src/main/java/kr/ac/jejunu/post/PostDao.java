@@ -13,13 +13,8 @@ public interface PostDao extends JpaRepository<Post, Integer> {
     @Query("select p from post_info p where p.user_id = ?1 and p.id = ?2")
     Post findByUser_idAndId(Integer userId, Integer id);
 
-    @Query("update post_info p set p.likes = p.likes + 1 where p.id = ?1")
-    void like(Integer id);
-
-    @Query("delete from post_info p where p.id = ?1")
-    void delete(Integer id);
-
-
+    @Query("select p from post_info p where p.user_id = ?1")
+    List<Post> findByUser_id(Integer user_id);
 
 //    // post_info 테이블의 id를 입력하여 가져온다.
 //    public Post get(Integer id) {

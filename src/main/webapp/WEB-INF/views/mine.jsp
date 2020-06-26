@@ -12,9 +12,10 @@
     <script>
       const startId = `${startId}`;
       let lastId = `${lastId}`;
-      const url = (`${user["id"]}`==``) ? `undefined` : `/rest/${user["id"]}`;
+      const url = (`${user["id"]}`==``) ? `undefined` : `/post/${user["id"]}`;
       const loginUser = `${user["name"]}`;
       const loginProfile = `${user["profile"]}`;
+      const loginId = `${user["id"]}`;
     </script>
   </head>
   <body class="is-preload">
@@ -99,12 +100,13 @@
     <script src="/js/breakpoints.min.js"></script>
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/load.js"></script>
     <script src="/js/loginCheck.js"></script>
     <script>
-      loginCheck(loginUser, loginProfile);
-    </script>
-    <script src="/js/load.js"></script>
+      loginCheck(loginUser, loginProfile, loginId);
+    </script>c
     <script src="/js/ajax.js"></script>
-    <script src="js/postHandle.js"></script>
+    <script src="/js/postHandle.js"></script>
+    <script src="/js/chat.js"></script>
   </body>
 </html>

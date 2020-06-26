@@ -40,7 +40,7 @@
             </div>
           </header>
           <section>
-            <form method="post" action="/rest/login">
+            <form method="post" action="/user/login">
               <div class="row gtr-uniform">
                 <div class="col-12 col-12-xsmall">
                   <input
