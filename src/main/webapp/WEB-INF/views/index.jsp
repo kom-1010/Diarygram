@@ -42,8 +42,11 @@
   <section id="sidebar">
     <!-- Intro -->
     <section id="intro">
+      <a href="/" class="logo"
+      ><img src="/images/logo.jpg" alt=""
+      /></a>
       <header>
-        <a href="/"><h2>Diarygram</h2></a>
+        <h2>Diarygram</h2>
         <p>
           삶을 여러 사람과 공유하세요!
         </p>

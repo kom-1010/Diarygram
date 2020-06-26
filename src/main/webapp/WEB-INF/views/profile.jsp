@@ -66,7 +66,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
           <div class="col-12">
             <ul class="actions">
-              <li><input type="submit" value="signup" id="btn-signup" /></li>
+              <li><input type="submit" value="update" id="btn-signup" /></li>
               <li><a href="/" class="button">Cancle</a></li>
             </ul>
           </div>
@@ -93,14 +93,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
   <!-- author -->
   <section>
-    <ul class="actions">
-      <!-- Not login state-->
-      <li>
-        <a href="/login/" class="button large">로그인</a>
-      </li>
-      <li>
-        <a href="/signup/" class="button large">회원가입</a>
-      </li>
+    <ul class="actions" id="area-account">
     </ul>
   </section>
 
